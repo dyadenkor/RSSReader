@@ -9,7 +9,8 @@
 #import <Foundation/Foundation.h>
 
 @interface RRAllNewsDataSource : NSObject
-@property (nonatomic, copy) NSString *siteName;
-@property (nonatomic ,strong) NSMutableArray *siteNews;
+
+@property (nonatomic, strong) NSString *siteName;
+@property (nonatomic, strong) NSMutableArray *siteNews;
 
 @end

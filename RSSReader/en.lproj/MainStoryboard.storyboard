@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2840" systemVersion="11E53" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="ycj-Me-n0z">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="12C60" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="ycj-Me-n0z">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1926"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1930"/>
     </dependencies>
     <scenes>
         <!--Favourite NewsVC-->
@@ -48,10 +48,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="P2q-zM-Z9u" firstAttribute="top" secondItem="f4q-05-jm2" secondAttribute="top" type="default" id="FoZ-DP-rNA"/>
-                            <constraint firstItem="P2q-zM-Z9u" firstAttribute="leading" secondItem="f4q-05-jm2" secondAttribute="leading" type="default" id="Qnv-xb-rSv"/>
-                            <constraint firstItem="P2q-zM-Z9u" firstAttribute="bottom" secondItem="f4q-05-jm2" secondAttribute="bottom" type="default" id="nFv-kz-vsl"/>
-                            <constraint firstItem="P2q-zM-Z9u" firstAttribute="trailing" secondItem="f4q-05-jm2" secondAttribute="trailing" type="default" id="taG-Jh-HE2"/>
+                            <constraint firstItem="P2q-zM-Z9u" firstAttribute="leading" secondItem="f4q-05-jm2" secondAttribute="leading" type="default" id="JCt-W3-1Sq"/>
+                            <constraint firstItem="P2q-zM-Z9u" firstAttribute="top" secondItem="f4q-05-jm2" secondAttribute="top" type="default" id="RE1-0t-E8Q"/>
+                            <constraint firstItem="P2q-zM-Z9u" firstAttribute="trailing" secondItem="f4q-05-jm2" secondAttribute="trailing" type="default" id="bgx-9d-QcR"/>
+                            <constraint firstItem="P2q-zM-Z9u" firstAttribute="bottom" secondItem="f4q-05-jm2" secondAttribute="bottom" type="default" id="yOu-V0-Lzw"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Settings" id="fOP-I8-Xcp"/>
@@ -133,10 +133,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="dt2-8s-uNC" firstAttribute="trailing" secondItem="jvM-OM-dqY" secondAttribute="trailing" type="default" id="5it-wd-p4q"/>
-                            <constraint firstItem="dt2-8s-uNC" firstAttribute="bottom" secondItem="jvM-OM-dqY" secondAttribute="bottom" type="default" id="95c-xu-baO"/>
-                            <constraint firstItem="dt2-8s-uNC" firstAttribute="leading" secondItem="jvM-OM-dqY" secondAttribute="leading" type="default" id="Vd0-GK-URw"/>
-                            <constraint firstItem="dt2-8s-uNC" firstAttribute="top" secondItem="jvM-OM-dqY" secondAttribute="top" type="default" id="ewl-3b-9Er"/>
+                            <constraint firstItem="dt2-8s-uNC" firstAttribute="bottom" secondItem="jvM-OM-dqY" secondAttribute="bottom" type="default" id="0Ko-xB-5rA"/>
+                            <constraint firstItem="dt2-8s-uNC" firstAttribute="trailing" secondItem="jvM-OM-dqY" secondAttribute="trailing" type="default" id="GES-mk-E0v"/>
+                            <constraint firstItem="dt2-8s-uNC" firstAttribute="top" secondItem="jvM-OM-dqY" secondAttribute="top" type="default" id="NRb-bc-RRU"/>
+                            <constraint firstItem="dt2-8s-uNC" firstAttribute="leading" secondItem="jvM-OM-dqY" secondAttribute="leading" type="default" id="vOm-Lu-Dar"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="All" id="zYF-8Y-Ypp"/>
@@ -170,6 +170,29 @@
             <point key="canvasLocation" x="-236" y="-97"/>
         </scene>
     </scenes>
+    <classes>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="RRAllNewsVC" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RRAllNewsVC.h"/>
+            <relationships>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="RRFavouriteNewsVC" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RRFavouriteNewsVC.h"/>
+        </class>
+        <class className="RRNotReadNewsVC" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RRNotReadNewsVC.h"/>
+        </class>
+        <class className="RRSettingsVC" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RRSettingsVC.h"/>
+            <relationships>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
