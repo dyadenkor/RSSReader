@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "RestKit.h"
 
 @interface RRNewDetailObjectMapping : NSObject
 @property (nonatomic, copy) NSString *title;

@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "RestKit.h"
 
 @protocol RRServerGatewayDelegate <NSObject>
 
