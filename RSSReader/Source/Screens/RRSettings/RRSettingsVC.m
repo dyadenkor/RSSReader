@@ -8,6 +8,8 @@
 
 #import "RRSettingsVC.h"
 
+NSString * const SiteLinkEntityName = @"SiteLink";
+NSString * const SettingCellIdentyfier = @"SettingCellIdentyfier";
 
 @interface RRSettingsVC ()
 
@@ -70,7 +72,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)theTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [theTableView dequeueReusableCellWithIdentifier:@"SettingCellIdentyfier"];
+    UITableViewCell *cell = [theTableView dequeueReusableCellWithIdentifier:SettingCellIdentyfier];
     
     SiteLink *item = [[self dataSource] objectAtIndex:[indexPath row]];
 
@@ -95,7 +97,6 @@
     }
 }
 
-
 #pragma mark NavigationItemsAction
 
 - (IBAction)addButtonAction:(id)sender
@@ -108,7 +109,7 @@
             [newUrl appendString:@"http://"];
             [newUrl appendString:text];
            
-            SiteLink *siteLink = [NSEntityDescription insertNewObjectForEntityForName:@"SiteLink"
+            SiteLink *siteLink = [NSEntityDescription insertNewObjectForEntityForName:SiteLinkEntityName
                                                                inManagedObjectContext:[RRManagedObjectContext sharedManagedObjectContext]];
 
             [siteLink setLink:newUrl];
@@ -126,7 +127,7 @@
 
 - (void)fetchData
 {
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"SiteLink"
+    NSEntityDescription *entity = [NSEntityDescription entityForName:SiteLinkEntityName
                                               inManagedObjectContext:[RRManagedObjectContext sharedManagedObjectContext]];
     
     NSFetchRequest *request = [[NSFetchRequest alloc] init];

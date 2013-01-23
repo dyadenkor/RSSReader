@@ -8,6 +8,7 @@
 
 #import "RRAllNewsVC.h"
 
+NSString * const AllNewsVCCellIdentifier = @"AllNewsVCCellIdentifier";
 
 @interface RRAllNewsVC ()
 
@@ -42,17 +43,22 @@
 	// Do any additional setup after loading the view.
 }
 
-- (void)viewWillAppear:(BOOL)animated
+- (void)viewDidAppear:(BOOL)animated
 {
-    [super viewWillAppear:animated];
+    [super viewDidAppear:animated];
     
     [[self dataSource] removeAllObjects];
+    [[self tableView] reloadData];
     
     [self fetchData];
     
     if ([[self links] count])
     {
         [self loadNews];
+    }
+    else
+    {
+        //[[self tabBarController] setSelectedIndex:3];
     }
 }
 
@@ -76,14 +82,18 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [[[[self dataSource] objectAtIndex:section] siteNews]count];
+    return [[[[self dataSource] objectAtIndex:section] siteNews] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)theTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [theTableView dequeueReusableCellWithIdentifier:@"AllNewsVCCellIdentifier"];
+    RRAllNewsCell *cell = [theTableView dequeueReusableCellWithIdentifier:AllNewsVCCellIdentifier];
     
-    [[cell textLabel] setText:[[[[self dataSource] objectAtIndex:[indexPath section]] siteNews]objectAtIndex:[indexPath row]]];
+    RRNewDetailObjectMapping *element = [[[[self dataSource] objectAtIndex:[indexPath section]] siteNews]objectAtIndex:[indexPath row]];
+    
+    [[cell title] setText:[element title]];
+    
+    [[cell description] setText:[element content]];
     
     return cell;
 }
@@ -91,6 +101,11 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     return 20;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    return [[[self dataSource] objectAtIndex:section] siteName];
 }
 
 #pragma mark RRServerGatewayDelegate
@@ -102,20 +117,16 @@
 
 - (void) didRecieveResponceSucces:(RKMappingResult *)mappingResult
 {
-    
     RRRootResponseObjectMapping *site = [mappingResult firstObject];
-    
     RRSiteInfoObjectMapping *siteInfo = [[[site responseData] lastObject] siteInfo];
-    
-    
     RRAllNewsDataSourceItem *siteDataSource = [[RRAllNewsDataSourceItem alloc] init];
     
     [siteDataSource setSiteName:[siteInfo title]];
      
-     for (RRNewDetailObjectMapping *element in [siteInfo entries])
-     {
-         [[siteDataSource siteNews] addObject:[element title]];
-     }
+    for (RRNewDetailObjectMapping *element in [siteInfo entries])
+    {
+        [[siteDataSource siteNews] addObject:element];
+    }
     
     if ([[siteDataSource siteNews] count])
     {
@@ -143,12 +154,11 @@
 
 - (void)fetchData
 {
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"SiteLink"
+    NSEntityDescription *entity = [NSEntityDescription entityForName:SiteLinkEntityName
                                               inManagedObjectContext:[RRManagedObjectContext sharedManagedObjectContext]];
     
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     [request setEntity:entity];
-    
     
     NSError *error = nil;
     

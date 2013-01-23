@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8414A16E16AFD6E500E0041A /* SiteContent.m in Sources */ = {isa = PBXBuildFile; fileRef = 8414A16D16AFD6E500E0041A /* SiteContent.m */; };
+		8414A18316B02CED00E0041A /* RRAllNewsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8414A18216B02CED00E0041A /* RRAllNewsCell.m */; };
 		8414B85C16A065FF005C3C70 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8414B85B16A065FF005C3C70 /* UIKit.framework */; };
 		8414B85E16A065FF005C3C70 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8414B85D16A065FF005C3C70 /* Foundation.framework */; };
 		8414B86016A065FF005C3C70 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8414B85F16A065FF005C3C70 /* CoreGraphics.framework */; };
@@ -82,6 +83,8 @@
 /* Begin PBXFileReference section */
 		8414A16C16AFD6E500E0041A /* SiteContent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SiteContent.h; sourceTree = "<group>"; };
 		8414A16D16AFD6E500E0041A /* SiteContent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SiteContent.m; sourceTree = "<group>"; };
+		8414A18116B02CED00E0041A /* RRAllNewsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRAllNewsCell.h; sourceTree = "<group>"; };
+		8414A18216B02CED00E0041A /* RRAllNewsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RRAllNewsCell.m; sourceTree = "<group>"; };
 		8414B85716A065FF005C3C70 /* RSSReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RSSReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8414B85B16A065FF005C3C70 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		8414B85D16A065FF005C3C70 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -154,6 +157,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8414A17E16B02CC900E0041A /* UITableView */ = {
+			isa = PBXGroup;
+			children = (
+				8414A17F16B02CC900E0041A /* UITableViewCells */,
+			);
+			path = UITableView;
+			sourceTree = "<group>";
+		};
+		8414A17F16B02CC900E0041A /* UITableViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				8414A18016B02CC900E0041A /* RRAllNewsCell */,
+			);
+			path = UITableViewCells;
+			sourceTree = "<group>";
+		};
+		8414A18016B02CC900E0041A /* RRAllNewsCell */ = {
+			isa = PBXGroup;
+			children = (
+				8414A18116B02CED00E0041A /* RRAllNewsCell.h */,
+				8414A18216B02CED00E0041A /* RRAllNewsCell.m */,
+			);
+			path = RRAllNewsCell;
+			sourceTree = "<group>";
+		};
 		8414B84C16A065FF005C3C70 = {
 			isa = PBXGroup;
 			children = (
@@ -302,6 +330,7 @@
 		841975CD16A96C3100DBB9E7 /* Control */ = {
 			isa = PBXGroup;
 			children = (
+				8414A17E16B02CC900E0041A /* UITableView */,
 				841975CE16A96C3100DBB9E7 /* RRAlertViewBlock */,
 			);
 			path = Control;
@@ -538,6 +567,7 @@
 				847D906216AED48B0089B055 /* RRManagedObjectContext.m in Sources */,
 				847D907616AEF3170089B055 /* SiteLink.m in Sources */,
 				8414A16E16AFD6E500E0041A /* SiteContent.m in Sources */,
+				8414A18316B02CED00E0041A /* RRAllNewsCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

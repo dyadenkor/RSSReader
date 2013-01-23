@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="12C60" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="ycj-Me-n0z">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2840" systemVersion="11E53" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="ycj-Me-n0z">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1930"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1926"/>
     </dependencies>
     <scenes>
         <!--Favourite NewsVC-->
@@ -48,10 +48,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="P2q-zM-Z9u" firstAttribute="leading" secondItem="f4q-05-jm2" secondAttribute="leading" type="default" id="JCt-W3-1Sq"/>
-                            <constraint firstItem="P2q-zM-Z9u" firstAttribute="top" secondItem="f4q-05-jm2" secondAttribute="top" type="default" id="RE1-0t-E8Q"/>
-                            <constraint firstItem="P2q-zM-Z9u" firstAttribute="trailing" secondItem="f4q-05-jm2" secondAttribute="trailing" type="default" id="bgx-9d-QcR"/>
-                            <constraint firstItem="P2q-zM-Z9u" firstAttribute="bottom" secondItem="f4q-05-jm2" secondAttribute="bottom" type="default" id="yOu-V0-Lzw"/>
+                            <constraint firstItem="P2q-zM-Z9u" firstAttribute="bottom" secondItem="f4q-05-jm2" secondAttribute="bottom" type="default" id="Rzy-uM-j4r"/>
+                            <constraint firstItem="P2q-zM-Z9u" firstAttribute="leading" secondItem="f4q-05-jm2" secondAttribute="leading" type="default" id="VwD-Z5-wQB"/>
+                            <constraint firstItem="P2q-zM-Z9u" firstAttribute="trailing" secondItem="f4q-05-jm2" secondAttribute="trailing" type="default" id="eAJ-lm-oqZ"/>
+                            <constraint firstItem="P2q-zM-Z9u" firstAttribute="top" secondItem="f4q-05-jm2" secondAttribute="top" type="default" id="mp3-xP-1lB"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Settings" id="fOP-I8-Xcp"/>
@@ -112,17 +112,47 @@
                         <rect key="frame" x="0.0" y="20" width="320" height="499"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="dt2-8s-uNC">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="99" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="dt2-8s-uNC">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="AllNewsVCCellIdentifier" id="tPW-d2-Crc">
-                                        <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="AllNewsVCCellIdentifier" rowHeight="99" id="tPW-d2-Crc" customClass="RRAllNewsCell">
+                                        <rect key="frame" x="0.0" y="22" width="320" height="99"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="300" height="98"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Title" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="283" translatesAutoresizingMaskIntoConstraints="NO" id="vdM-TV-2Hr">
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="283" id="Mvu-cG-nmT"/>
+                                                        <constraint firstAttribute="height" constant="38" id="hbk-5s-m3A"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="15"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </label>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Description" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="283" translatesAutoresizingMaskIntoConstraints="NO" id="Wpk-OM-qoX">
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="283" id="1iz-Nk-Y2Q"/>
+                                                        <constraint firstAttribute="height" constant="51" id="JH0-vd-NMj"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="Helvetica-LightOblique" family="Helvetica" pointSize="10"/>
+                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </label>
+                                            </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
+                                        <constraints>
+                                            <constraint firstItem="Wpk-OM-qoX" firstAttribute="top" secondItem="tPW-d2-Crc" secondAttribute="top" constant="42" id="E3l-nf-hKO"/>
+                                            <constraint firstItem="Wpk-OM-qoX" firstAttribute="leading" secondItem="tPW-d2-Crc" secondAttribute="leading" constant="9" id="J31-CF-Imi"/>
+                                            <constraint firstItem="vdM-TV-2Hr" firstAttribute="top" secondItem="tPW-d2-Crc" secondAttribute="top" constant="5" id="OpK-ST-3mt"/>
+                                            <constraint firstItem="vdM-TV-2Hr" firstAttribute="leading" secondItem="tPW-d2-Crc" secondAttribute="leading" constant="10" id="xcD-Iq-wJd"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="description" destination="Wpk-OM-qoX" id="JQ9-cZ-6Gb"/>
+                                            <outlet property="title" destination="vdM-TV-2Hr" id="MQr-BF-8eL"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -133,10 +163,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="dt2-8s-uNC" firstAttribute="bottom" secondItem="jvM-OM-dqY" secondAttribute="bottom" type="default" id="0Ko-xB-5rA"/>
-                            <constraint firstItem="dt2-8s-uNC" firstAttribute="trailing" secondItem="jvM-OM-dqY" secondAttribute="trailing" type="default" id="GES-mk-E0v"/>
-                            <constraint firstItem="dt2-8s-uNC" firstAttribute="top" secondItem="jvM-OM-dqY" secondAttribute="top" type="default" id="NRb-bc-RRU"/>
-                            <constraint firstItem="dt2-8s-uNC" firstAttribute="leading" secondItem="jvM-OM-dqY" secondAttribute="leading" type="default" id="vOm-Lu-Dar"/>
+                            <constraint firstItem="dt2-8s-uNC" firstAttribute="leading" secondItem="jvM-OM-dqY" secondAttribute="leading" type="default" id="3ma-KP-dEU"/>
+                            <constraint firstItem="dt2-8s-uNC" firstAttribute="top" secondItem="jvM-OM-dqY" secondAttribute="top" type="default" id="7Ps-zj-fW0"/>
+                            <constraint firstItem="dt2-8s-uNC" firstAttribute="bottom" secondItem="jvM-OM-dqY" secondAttribute="bottom" type="default" id="S2w-BQ-6CE"/>
+                            <constraint firstItem="dt2-8s-uNC" firstAttribute="trailing" secondItem="jvM-OM-dqY" secondAttribute="trailing" type="default" id="yWx-KQ-006"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="All" id="zYF-8Y-Ypp"/>
@@ -173,6 +203,13 @@
     <classes>
         <class className="NSLayoutConstraint" superclassName="NSObject">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="RRAllNewsCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RRAllNewsCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="description" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="title" candidateClass="UILabel"/>
+            </relationships>
         </class>
         <class className="RRAllNewsVC" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/RRAllNewsVC.h"/>
