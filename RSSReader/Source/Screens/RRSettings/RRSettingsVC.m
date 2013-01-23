@@ -7,7 +7,7 @@
 //
 
 #import "RRSettingsVC.h"
-#import "RRAlertViewBlock.h"
+
 
 @interface RRSettingsVC ()
 
@@ -36,17 +36,17 @@
     
     dataSource = [[NSMutableArray alloc] init];
     
-    NSString *someUrl = @"http://lenta.ru/rss";
-    ///NSString *someUrl2 = @"http://lenta.ru/rss";
-   // NSString *someUrl3 = @"http://lenta.ru/rss";
-    //NSString *someUrl4 = @"http://lenta.ru/rss";
+    if (![[self dataSource] count])
+    {
+        [self fetchData];
+    }
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
     
-    [[self dataSource] addObject:someUrl];
-     //[[self dataSource] addObject:someUrl2];
-    // [[self dataSource] addObject:someUrl3];
-     //[[self dataSource] addObject:someUrl4];
-    
-	// Do any additional setup after loading the view.
+    [self saveManagedObjectContext];
 }
 
 - (void)didReceiveMemoryWarning
@@ -71,8 +71,10 @@
 - (UITableViewCell *)tableView:(UITableView *)theTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [theTableView dequeueReusableCellWithIdentifier:@"SettingCellIdentyfier"];
+    
+    SiteLink *item = [[self dataSource] objectAtIndex:[indexPath row]];
 
-    [[cell textLabel] setText:[[self dataSource] objectAtIndex:[indexPath row]]];
+    [[cell textLabel] setText:[item link]];
     
     return cell;
 }
@@ -82,6 +84,12 @@
 {
     if (editingStyle == UITableViewCellEditingStyleDelete)
     {
+        SiteLink *deleteLink = [[self dataSource] objectAtIndex:[indexPath row]];
+        NSManagedObjectContext *context = [RRManagedObjectContext sharedManagedObjectContext];
+        [context deleteObject:deleteLink];
+        
+        [self saveManagedObjectContext];
+        
         [[self dataSource] removeObjectAtIndex:indexPath.row];
         [[self tableView] reloadData];
     }
@@ -99,14 +107,56 @@
             NSMutableString *newUrl = [[NSMutableString alloc] init];
             [newUrl appendString:@"http://"];
             [newUrl appendString:text];
-            [[self dataSource] addObject:newUrl];
+           
+            SiteLink *siteLink = [NSEntityDescription insertNewObjectForEntityForName:@"SiteLink"
+                                                               inManagedObjectContext:[RRManagedObjectContext sharedManagedObjectContext]];
+
+            [siteLink setLink:newUrl];
             
+            [[self dataSource] addObject:siteLink];
             [[self tableView] reloadData];
         }
     }
         cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil];
     
     [alert show];
+}
+
+#pragma mark Private methods
+
+- (void)fetchData
+{
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"SiteLink"
+                                              inManagedObjectContext:[RRManagedObjectContext sharedManagedObjectContext]];
+    
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    [request setEntity:entity];
+    
+    
+    NSError *error = nil;
+    
+    [[self dataSource] addObjectsFromArray:[[RRManagedObjectContext sharedManagedObjectContext] executeFetchRequest:request
+                                                                                                              error:&error]];
+    
+    if (error)
+    {
+        NSLog(@"%s: error:%@", __PRETTY_FUNCTION__, [error description]);
+    }
+    
+}
+
+- (NSError *)saveManagedObjectContext
+{
+    NSError *error = nil;
+    
+    if ([[RRManagedObjectContext sharedManagedObjectContext] save:&error])
+    {
+        NSLog(@"%s: error = %@", __PRETTY_FUNCTION__, [error description]);
+        
+        return error;
+    }
+    
+    return error;
 }
 
 @end

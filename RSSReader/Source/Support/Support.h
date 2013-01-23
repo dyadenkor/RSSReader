@@ -6,12 +6,28 @@
 //  Copyright (c) 2013 Roman Dyadenko. All rights reserved.
 //
 
-#import "RestKit/RestKit.h"
+#import <RestKit/RestKit.h>
 
 // Object Mapping
 #import "RRRootResponseObjectMapping.h"
 #import "RRFeedObjectMapping.h"
 #import "RRNewDetailObjectMapping.h"
+#import "RRSiteInfoObjectMapping.h"
 
-// 
-#import "RRAllNewsDataSource.h"
+// DataSourceItem
+#import "RRAllNewsDataSourceItem.h"
+
+// ServerGateWay
+#import "RRServerGateway.h"
+
+// AlertViewBlock
+#import "RRAlertViewBlock.h"
+
+// CoreData
+#import "SiteLink.h"
+#import "SiteInfo.h"
+#import "SiteContent.h"
+
+#import "RRManagedObjectContext.h"
+// entity names
+#define CORE_DATA_SITELINK_ENTITY_NAME @"SiteLink"

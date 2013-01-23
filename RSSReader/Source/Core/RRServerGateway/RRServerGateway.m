@@ -7,14 +7,13 @@
 //
 
 #import "RRServerGateway.h"
-#import "RRRootResponseObjectMapping.h"
 
 @implementation RRServerGateway
 @synthesize baseURL;
 
 - (void)sendData
 {
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://ajax.googleapis.com/ajax/services/feed/load?v=1.0&q=http://%@&num=-1&output=json",baseURL]];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://ajax.googleapis.com/ajax/services/feed/load?v=1.0&q=%@&num=-1&output=json",baseURL]];
 
     [RKMIMETypeSerialization registerClass:[RKNSJSONSerialization class] forMIMEType:@"text/javascript"];
     

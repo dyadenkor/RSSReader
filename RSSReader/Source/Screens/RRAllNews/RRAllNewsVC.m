@@ -7,16 +7,14 @@
 //
 
 #import "RRAllNewsVC.h"
-#import "RRFeedObjectMapping.h"
-#import "RRRootResponseObjectMapping.h"
-#import "RRNewDetailObjectMapping.h"
-#import "RRAllNewsDataSource.h"
+
 
 @interface RRAllNewsVC ()
 
 @property (nonatomic, strong) RRServerGateway *serverGateWay;
 @property (nonatomic, strong) NSMutableArray *dataSource;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) NSMutableArray *links;
 
 @end
 
@@ -24,6 +22,7 @@
 @synthesize serverGateWay;
 @synthesize dataSource;
 @synthesize tableView;
+@synthesize links;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -38,21 +37,23 @@
 {
     [super viewDidLoad];
     
-    serverGateWay = [[RRServerGateway alloc] init];
-    
-    [serverGateWay setBaseURL:@"feeds.bbci.co.uk/news/rss.xml"];
-    
-    [serverGateWay sendData];
-    
-    [serverGateWay setBaseURL:@"lenta.ru/rss"];
-    
-    [serverGateWay sendData];
-    
-    [serverGateWay setDelegate:self];
-    
     dataSource = [[NSMutableArray alloc] init];
-    
+    links = [[NSMutableArray alloc] init];
 	// Do any additional setup after loading the view.
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [[self dataSource] removeAllObjects];
+    
+    [self fetchData];
+    
+    if ([[self links] count])
+    {
+        [self loadNews];
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -101,12 +102,13 @@
 
 - (void) didRecieveResponceSucces:(RKMappingResult *)mappingResult
 {
+    
     RRRootResponseObjectMapping *site = [mappingResult firstObject];
     
     RRSiteInfoObjectMapping *siteInfo = [[[site responseData] lastObject] siteInfo];
     
     
-    RRAllNewsDataSource *siteDataSource = [[RRAllNewsDataSource alloc] init];
+    RRAllNewsDataSourceItem *siteDataSource = [[RRAllNewsDataSourceItem alloc] init];
     
     [siteDataSource setSiteName:[siteInfo title]];
      
@@ -115,10 +117,50 @@
          [[siteDataSource siteNews] addObject:[element title]];
      }
     
-    [[self dataSource] addObject:siteDataSource];
-     
+    if ([[siteDataSource siteNews] count])
+    {
+        [[self dataSource] addObject:siteDataSource];
+    }
+    
     [[self tableView] reloadData];
 }
 
+#pragma mark Private methods
+
+- (void)loadNews
+{
+    serverGateWay = [[RRServerGateway alloc] init];
+    
+    for (SiteLink *item in [self links])
+    {
+        [serverGateWay setBaseURL:[item link]];
+    
+        [serverGateWay sendData];
+    }
+    
+    [serverGateWay setDelegate:self];
+}
+
+- (void)fetchData
+{
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"SiteLink"
+                                              inManagedObjectContext:[RRManagedObjectContext sharedManagedObjectContext]];
+    
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    [request setEntity:entity];
+    
+    
+    NSError *error = nil;
+    
+    [[self links] removeAllObjects];
+    [[self links] addObjectsFromArray:[[RRManagedObjectContext sharedManagedObjectContext] executeFetchRequest:request
+                                                                                                         error:&error]];
+    
+    if (error)
+    {
+        NSLog(@"%s: error:%@", __PRETTY_FUNCTION__, [error description]);
+    }
+    
+}
 
 @end

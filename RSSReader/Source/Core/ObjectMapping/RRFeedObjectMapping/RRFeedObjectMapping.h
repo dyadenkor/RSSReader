@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "RRSiteInfoObjectMapping.h"
+@class RRSiteInfoObjectMapping;
 
 @interface RRFeedObjectMapping : NSObject
 @property (nonatomic, strong) RRSiteInfoObjectMapping* siteInfo;

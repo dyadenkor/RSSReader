@@ -7,7 +7,6 @@
 //
 
 #import "RRRootResponseObjectMapping.h"
-#import "RRFeedObjectMapping.h"
 
 @implementation RRRootResponseObjectMapping
 @synthesize responceStatusCode;

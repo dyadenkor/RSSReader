@@ -7,7 +7,6 @@
 //
 
 #import "RRSiteInfoObjectMapping.h"
-#import "RRNewDetailObjectMapping.h"
 
 @implementation RRSiteInfoObjectMapping
 @synthesize title;
