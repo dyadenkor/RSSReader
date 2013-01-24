@@ -2,7 +2,7 @@
 //  Root.h
 //  RSSReader
 //
-//  Created by admin on 1/24/13.
+//  Created by Oleg Salyvin on 1/25/13.
 //  Copyright (c) 2013 Roman Dyadenko. All rights reserved.
 //
 
@@ -12,7 +12,7 @@
 
 @interface Root : NSManagedObject
 
+@property (nonatomic, retain) NSString * someId;
 @property (nonatomic, retain) NSNumber * statusCode;
-@property (nonatomic, retain) NSNumber * someID;
 
 @end

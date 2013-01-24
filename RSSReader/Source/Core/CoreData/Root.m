@@ -2,7 +2,7 @@
 //  Root.m
 //  RSSReader
 //
-//  Created by admin on 1/24/13.
+//  Created by Oleg Salyvin on 1/25/13.
 //  Copyright (c) 2013 Roman Dyadenko. All rights reserved.
 //
 
@@ -11,7 +11,7 @@
 
 @implementation Root
 
+@dynamic someId;
 @dynamic statusCode;
-@dynamic someID;
 
 @end
