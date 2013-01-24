@@ -23,8 +23,8 @@
     }];
     
     [siteInfo addPropertyMapping:[RKRelationshipMapping relationshipMappingFromKeyPath:@"entries"
-                                                                                 toKeyPath:@"entries"
-                                                                               withMapping:[RRNewDetailObjectMapping objectMapping]]];
+                                                                             toKeyPath:@"entries"
+                                                                           withMapping:[RRNewDetailObjectMapping objectMapping]]];
     return siteInfo;
 }
 

@@ -35,6 +35,7 @@
 		8457C99F16AD87AD0094C164 /* libRestKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8457C99616AD862B0094C164 /* libRestKit.a */; };
 		8457C9A116AD87EE0094C164 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8457C9A016AD87EE0094C164 /* CFNetwork.framework */; };
 		8457C9A316AD880A0094C164 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8457C9A216AD880A0094C164 /* Security.framework */; };
+		84698AB916B179B800F3BBBB /* Root.m in Sources */ = {isa = PBXBuildFile; fileRef = 84698AB816B179B800F3BBBB /* Root.m */; };
 		847D906216AED48B0089B055 /* RRManagedObjectContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 847D906116AED48B0089B055 /* RRManagedObjectContext.m */; };
 		847D907616AEF3170089B055 /* SiteLink.m in Sources */ = {isa = PBXBuildFile; fileRef = 847D907516AEF3160089B055 /* SiteLink.m */; };
 		84F39C8516A5925900B08475 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84F39C8416A5925900B08475 /* SystemConfiguration.framework */; };
@@ -128,6 +129,8 @@
 		8457C98B16AD862B0094C164 /* RestKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RestKit.xcodeproj; path = "RestKit-0.20.0-pre6/RestKit.xcodeproj"; sourceTree = "<group>"; };
 		8457C9A016AD87EE0094C164 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		8457C9A216AD880A0094C164 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		84698AB716B179B800F3BBBB /* Root.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Root.h; sourceTree = "<group>"; };
+		84698AB816B179B800F3BBBB /* Root.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Root.m; sourceTree = "<group>"; };
 		847D906016AED48B0089B055 /* RRManagedObjectContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRManagedObjectContext.h; sourceTree = "<group>"; };
 		847D906116AED48B0089B055 /* RRManagedObjectContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RRManagedObjectContext.m; sourceTree = "<group>"; };
 		847D907416AEF3160089B055 /* SiteLink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SiteLink.h; sourceTree = "<group>"; };
@@ -420,6 +423,8 @@
 				847D907516AEF3160089B055 /* SiteLink.m */,
 				8414A16C16AFD6E500E0041A /* SiteContent.h */,
 				8414A16D16AFD6E500E0041A /* SiteContent.m */,
+				84698AB716B179B800F3BBBB /* Root.h */,
+				84698AB816B179B800F3BBBB /* Root.m */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -568,6 +573,7 @@
 				847D907616AEF3170089B055 /* SiteLink.m in Sources */,
 				8414A16E16AFD6E500E0041A /* SiteContent.m in Sources */,
 				8414A18316B02CED00E0041A /* RRAllNewsCell.m in Sources */,
+				84698AB916B179B800F3BBBB /* Root.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

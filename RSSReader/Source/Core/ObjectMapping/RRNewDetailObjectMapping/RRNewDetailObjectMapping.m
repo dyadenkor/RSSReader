@@ -10,15 +10,18 @@
 
 @implementation RRNewDetailObjectMapping
 
-+ (RKObjectMapping *)objectMapping
++ (RKEntityMapping *)objectMapping
 {
-    RKObjectMapping *newDetail = [RKObjectMapping mappingForClass:[self class]];
+     RKEntityMapping* newDetail = [RKEntityMapping mappingForEntityForName:@"SiteContent"
+                                                      inManagedObjectStore:[[RKObjectManager sharedManager] managedObjectStore]];
+    
+   // RKObjectMapping *newDetail = [RKObjectMapping mappingForClass:[self class]];
     [newDetail addAttributeMappingsFromDictionary:
      @{
-     @"title": @"title",
-     @"link": @"link",
-     @"publishedDate": @"date",
-     @"content": @"content",
+     @"title": @"newsTitle",
+     @"link": @"newsLink"
+    // @"publishedDate": @"date",
+    // @"content": @"content",
      }];
     
     return newDetail;

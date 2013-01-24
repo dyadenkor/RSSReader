@@ -24,9 +24,6 @@ static NSPersistentStoreCoordinator *persistentStoreCoordinator = nil;
         return managedObjectContext;
     }
     
-    NSUndoManager *undoManager = [[NSUndoManager alloc] init];
-    [managedObjectContext setUndoManager:undoManager];
-    
     NSPersistentStoreCoordinator *coordinator = [self persistentStoreCoordinator];
     if (coordinator != nil) {
         managedObjectContext = [[NSManagedObjectContext alloc] init];

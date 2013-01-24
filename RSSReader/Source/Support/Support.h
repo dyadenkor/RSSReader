@@ -7,6 +7,7 @@
 //
 
 #import <RestKit/RestKit.h>
+#import <RestKit/CoreData.h>
 
 // Object Mapping
 #import "RRRootResponseObjectMapping.h"

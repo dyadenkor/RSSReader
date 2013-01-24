@@ -14,6 +14,6 @@
 @property (nonatomic, strong) NSDate *date;
 @property (nonatomic, copy) NSString *content;
 
-+ (RKObjectMapping *)objectMapping;
++ (RKEntityMapping *)objectMapping;
 
 @end

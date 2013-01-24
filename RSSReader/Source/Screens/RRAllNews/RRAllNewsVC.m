@@ -50,13 +50,13 @@ NSString * const AllNewsVCCellIdentifier = @"AllNewsVCCellIdentifier";
     [[self dataSource] removeAllObjects];
     [[self tableView] reloadData];
     
-    [self fetchData];
+   // [self fetchData];
     
-    if ([[self links] count])
+  //  if ([[self links] count])
     {
         [self loadNews];
     }
-    else
+   // else
     {
         //[[self tabBarController] setSelectedIndex:3];
     }
@@ -142,9 +142,9 @@ NSString * const AllNewsVCCellIdentifier = @"AllNewsVCCellIdentifier";
 {
     serverGateWay = [[RRServerGateway alloc] init];
     
-    for (SiteLink *item in [self links])
+    //for (SiteLink *item in [self links])
     {
-        [serverGateWay setBaseURL:[item link]];
+        [serverGateWay setBaseURL:@"http://lenta.ru/rss"];
     
         [serverGateWay sendData];
     }
