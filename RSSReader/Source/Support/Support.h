@@ -6,9 +6,6 @@
 //  Copyright (c) 2013 Roman Dyadenko. All rights reserved.
 //
 
-#import <RestKit/RestKit.h>
-#import <RestKit/CoreData.h>
-
 // Object Mapping
 #import "RRRootResponseObjectMapping.h"
 #import "RRFeedObjectMapping.h"
