@@ -13,6 +13,6 @@
 @property (nonatomic,copy) NSString *link;
 @property (nonatomic, strong) NSMutableArray *entries;
 
-+ (RKObjectMapping *)objectMapping;
++ (RKEntityMapping *)objectMapping;
 
 @end

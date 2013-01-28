@@ -8,8 +8,6 @@
 
 #import "RRAllNewsVC.h"
 
-NSString * const AllNewsVCCellIdentifier = @"AllNewsVCCellIdentifier";
-
 @interface RRAllNewsVC ()
 
 @property (nonatomic, strong) RRServerGateway *serverGateWay;
@@ -50,13 +48,14 @@ NSString * const AllNewsVCCellIdentifier = @"AllNewsVCCellIdentifier";
     [[self dataSource] removeAllObjects];
     [[self tableView] reloadData];
     
-   // [self fetchData];
+    [[self links] removeAllObjects];
+    [[self links] setArray:[self fetchData:SiteLinkEntityName]];
     
-  //  if ([[self links] count])
+    if ([[self links] count])
     {
         [self loadNews];
     }
-   // else
+    else
     {
         //[[self tabBarController] setSelectedIndex:3];
     }
@@ -89,11 +88,11 @@ NSString * const AllNewsVCCellIdentifier = @"AllNewsVCCellIdentifier";
 {
     RRAllNewsCell *cell = [theTableView dequeueReusableCellWithIdentifier:AllNewsVCCellIdentifier];
     
-    RRNewDetailObjectMapping *element = [[[[self dataSource] objectAtIndex:[indexPath section]] siteNews]objectAtIndex:[indexPath row]];
+    RRAllNewsDataSourceItem *site = [[self dataSource] objectAtIndex:[indexPath section]];
+    SiteContent *news = [[site siteNews] objectAtIndex:[indexPath row]];
     
-    [[cell title] setText:[element title]];
-    
-    [[cell description] setText:[element content]];
+    [[cell description] setText:[news newsContent]];
+    [[cell title] setText:[news newsTitle]];
     
     return cell;
 }
@@ -117,20 +116,18 @@ NSString * const AllNewsVCCellIdentifier = @"AllNewsVCCellIdentifier";
 
 - (void) didRecieveResponceSucces:(RKMappingResult *)mappingResult
 {
-    RRRootResponseObjectMapping *site = [mappingResult firstObject];
-    RRSiteInfoObjectMapping *siteInfo = [[[site responseData] lastObject] siteInfo];
-    RRAllNewsDataSourceItem *siteDataSource = [[RRAllNewsDataSourceItem alloc] init];
+    NSMutableArray *arrayOfLinks = [[NSMutableArray alloc] init];
     
-    [siteDataSource setSiteName:[siteInfo title]];
-     
-    for (RRNewDetailObjectMapping *element in [siteInfo entries])
+    [arrayOfLinks setArray:[self fetchData:SiteInfoEntityName]];
+   
+    for (SiteInfo *site in arrayOfLinks)
     {
-        [[siteDataSource siteNews] addObject:element];
-    }
-    
-    if ([[siteDataSource siteNews] count])
-    {
-        [[self dataSource] addObject:siteDataSource];
+        RRAllNewsDataSourceItem *item = [[RRAllNewsDataSourceItem alloc] init];
+        [item setSiteName:[site title]];
+        
+        [item setSiteNews:[self fetchData:SiteContentEntityName]];
+        
+        [[self dataSource] addObject:item];
     }
     
     [[self tableView] reloadData];
@@ -142,9 +139,9 @@ NSString * const AllNewsVCCellIdentifier = @"AllNewsVCCellIdentifier";
 {
     serverGateWay = [[RRServerGateway alloc] init];
     
-    //for (SiteLink *item in [self links])
+    for (SiteLink *item in [self links])
     {
-        [serverGateWay setBaseURL:@"http://lenta.ru/rss"];
+        [serverGateWay setBaseURL:[item link]];
     
         [serverGateWay sendData];
     }
@@ -152,9 +149,9 @@ NSString * const AllNewsVCCellIdentifier = @"AllNewsVCCellIdentifier";
     [serverGateWay setDelegate:self];
 }
 
-- (void)fetchData
+- (NSMutableArray *)fetchData:(NSString *)entityName
 {
-    NSEntityDescription *entity = [NSEntityDescription entityForName:SiteLinkEntityName
+    NSEntityDescription *entity = [NSEntityDescription entityForName:entityName
                                               inManagedObjectContext:[RRManagedObjectContext sharedManagedObjectContext]];
     
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
@@ -162,15 +159,16 @@ NSString * const AllNewsVCCellIdentifier = @"AllNewsVCCellIdentifier";
     
     NSError *error = nil;
     
-    [[self links] removeAllObjects];
-    [[self links] addObjectsFromArray:[[RRManagedObjectContext sharedManagedObjectContext] executeFetchRequest:request
-                                                                                                         error:&error]];
-    
+    NSMutableArray *resultArray = [[NSMutableArray alloc] init];
+    [resultArray addObjectsFromArray:[[RRManagedObjectContext sharedManagedObjectContext] executeFetchRequest:request
+                                                                                                        error:&error]];
+  
     if (error)
     {
-        NSLog(@"%s: error:%@", __PRETTY_FUNCTION__, [error description]);
+       assert(error);
     }
     
+    return resultArray;
 }
 
 @end

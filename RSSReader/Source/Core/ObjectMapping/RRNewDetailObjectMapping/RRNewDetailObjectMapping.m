@@ -12,16 +12,15 @@
 
 + (RKEntityMapping *)objectMapping
 {
-     RKEntityMapping* newDetail = [RKEntityMapping mappingForEntityForName:@"SiteContent"
+     RKEntityMapping* newDetail = [RKEntityMapping mappingForEntityForName:SiteContentEntityName
                                                       inManagedObjectStore:[[RKObjectManager sharedManager] managedObjectStore]];
     
-   // RKObjectMapping *newDetail = [RKObjectMapping mappingForClass:[self class]];
     [newDetail addAttributeMappingsFromDictionary:
      @{
      @"title": @"newsTitle",
-     @"link": @"newsLink"
-    // @"publishedDate": @"date",
-    // @"content": @"content",
+     @"link": @"newsLink",
+     //@"publishedDate": @"date",
+     @"content": @"newsContent"
      }];
     
     return newDetail;

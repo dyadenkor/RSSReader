@@ -8,10 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		7F9EC6CB16B1D42200F6D45C /* libRestKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F9EC6A316B1D30A00F6D45C /* libRestKit.a */; };
-		7F9EC6F116B1E9E700F6D45C /* Root.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F9EC6EA16B1E9E700F6D45C /* Root.m */; };
-		7F9EC6F216B1E9E700F6D45C /* SiteContent.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F9EC6EC16B1E9E700F6D45C /* SiteContent.m */; };
-		7F9EC6F316B1E9E700F6D45C /* SiteInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F9EC6EE16B1E9E700F6D45C /* SiteInfo.m */; };
-		7F9EC6F416B1E9E700F6D45C /* SiteLink.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F9EC6F016B1E9E700F6D45C /* SiteLink.m */; };
 		8414A18316B02CED00E0041A /* RRAllNewsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8414A18216B02CED00E0041A /* RRAllNewsCell.m */; };
 		8414B85C16A065FF005C3C70 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8414B85B16A065FF005C3C70 /* UIKit.framework */; };
 		8414B85E16A065FF005C3C70 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8414B85D16A065FF005C3C70 /* Foundation.framework */; };
@@ -23,6 +19,7 @@
 		8414B87216A065FF005C3C70 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8414B87116A065FF005C3C70 /* Default-568h@2x.png */; };
 		8414B87516A065FF005C3C70 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8414B87316A065FF005C3C70 /* MainStoryboard.storyboard */; };
 		8414B88216A06668005C3C70 /* RRAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8414B88116A06668005C3C70 /* RRAppDelegate.m */; };
+		8417119416B2C7ED0015698B /* RRCoreDataSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 8417119316B2C7ED0015698B /* RRCoreDataSupport.m */; };
 		841975C716A96BE200DBB9E7 /* RRRootResponseObjectMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 841975B716A96BE200DBB9E7 /* RRRootResponseObjectMapping.m */; };
 		841975C816A96BE200DBB9E7 /* RRFeedObjectMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 841975BA16A96BE200DBB9E7 /* RRFeedObjectMapping.m */; };
 		841975C916A96BE200DBB9E7 /* RRNewDetailObjectMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 841975BD16A96BE200DBB9E7 /* RRNewDetailObjectMapping.m */; };
@@ -38,6 +35,10 @@
 		8457C9A116AD87EE0094C164 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8457C9A016AD87EE0094C164 /* CFNetwork.framework */; };
 		8457C9A316AD880A0094C164 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8457C9A216AD880A0094C164 /* Security.framework */; };
 		847D906216AED48B0089B055 /* RRManagedObjectContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 847D906116AED48B0089B055 /* RRManagedObjectContext.m */; };
+		84C4B8BB16B2CE6500B4A645 /* RRTableViewCellSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 8417119116B2C7B90015698B /* RRTableViewCellSupport.m */; };
+		84C4B8DA16B2E3E000B4A645 /* SiteContent.m in Sources */ = {isa = PBXBuildFile; fileRef = 84C4B8D716B2E3E000B4A645 /* SiteContent.m */; };
+		84C4B8DB16B2E3E000B4A645 /* SiteInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 84C4B8D916B2E3E000B4A645 /* SiteInfo.m */; };
+		84C4B8DE16B2E55B00B4A645 /* SiteLink.m in Sources */ = {isa = PBXBuildFile; fileRef = 84C4B8DD16B2E55B00B4A645 /* SiteLink.m */; };
 		84F39C8516A5925900B08475 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84F39C8416A5925900B08475 /* SystemConfiguration.framework */; };
 		84F39C8716A5926500B08475 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84F39C8616A5926500B08475 /* CoreData.framework */; };
 		84F39C8916A5926F00B08475 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84F39C8816A5926F00B08475 /* MobileCoreServices.framework */; };
@@ -83,14 +84,6 @@
 
 /* Begin PBXFileReference section */
 		7F9EC41516B1D30900F6D45C /* RestKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = RestKit.xcodeproj; sourceTree = "<group>"; };
-		7F9EC6E916B1E9E700F6D45C /* Root.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Root.h; sourceTree = "<group>"; };
-		7F9EC6EA16B1E9E700F6D45C /* Root.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Root.m; sourceTree = "<group>"; };
-		7F9EC6EB16B1E9E700F6D45C /* SiteContent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SiteContent.h; sourceTree = "<group>"; };
-		7F9EC6EC16B1E9E700F6D45C /* SiteContent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SiteContent.m; sourceTree = "<group>"; };
-		7F9EC6ED16B1E9E700F6D45C /* SiteInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SiteInfo.h; sourceTree = "<group>"; };
-		7F9EC6EE16B1E9E700F6D45C /* SiteInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SiteInfo.m; sourceTree = "<group>"; };
-		7F9EC6EF16B1E9E700F6D45C /* SiteLink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SiteLink.h; sourceTree = "<group>"; };
-		7F9EC6F016B1E9E700F6D45C /* SiteLink.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SiteLink.m; sourceTree = "<group>"; };
 		8414A18116B02CED00E0041A /* RRAllNewsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRAllNewsCell.h; sourceTree = "<group>"; };
 		8414A18216B02CED00E0041A /* RRAllNewsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RRAllNewsCell.m; sourceTree = "<group>"; };
 		8414B85716A065FF005C3C70 /* RSSReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RSSReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -107,6 +100,10 @@
 		8414B87416A065FF005C3C70 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		8414B88016A06668005C3C70 /* RRAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRAppDelegate.h; sourceTree = "<group>"; };
 		8414B88116A06668005C3C70 /* RRAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RRAppDelegate.m; sourceTree = "<group>"; };
+		8417119016B2C7B90015698B /* RRTableViewCellSupport.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RRTableViewCellSupport.h; sourceTree = "<group>"; };
+		8417119116B2C7B90015698B /* RRTableViewCellSupport.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RRTableViewCellSupport.m; sourceTree = "<group>"; };
+		8417119216B2C7ED0015698B /* RRCoreDataSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRCoreDataSupport.h; sourceTree = "<group>"; };
+		8417119316B2C7ED0015698B /* RRCoreDataSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RRCoreDataSupport.m; sourceTree = "<group>"; };
 		841975B616A96BE200DBB9E7 /* RRRootResponseObjectMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRRootResponseObjectMapping.h; sourceTree = "<group>"; };
 		841975B716A96BE200DBB9E7 /* RRRootResponseObjectMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RRRootResponseObjectMapping.m; sourceTree = "<group>"; };
 		841975B916A96BE200DBB9E7 /* RRFeedObjectMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRFeedObjectMapping.h; sourceTree = "<group>"; };
@@ -135,6 +132,12 @@
 		8457C9A216AD880A0094C164 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		847D906016AED48B0089B055 /* RRManagedObjectContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRManagedObjectContext.h; sourceTree = "<group>"; };
 		847D906116AED48B0089B055 /* RRManagedObjectContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RRManagedObjectContext.m; sourceTree = "<group>"; };
+		84C4B8D616B2E3E000B4A645 /* SiteContent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SiteContent.h; sourceTree = "<group>"; };
+		84C4B8D716B2E3E000B4A645 /* SiteContent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SiteContent.m; sourceTree = "<group>"; };
+		84C4B8D816B2E3E000B4A645 /* SiteInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SiteInfo.h; sourceTree = "<group>"; };
+		84C4B8D916B2E3E000B4A645 /* SiteInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SiteInfo.m; sourceTree = "<group>"; };
+		84C4B8DC16B2E55B00B4A645 /* SiteLink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SiteLink.h; sourceTree = "<group>"; };
+		84C4B8DD16B2E55B00B4A645 /* SiteLink.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SiteLink.m; sourceTree = "<group>"; };
 		84F39C8416A5925900B08475 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		84F39C8616A5926500B08475 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		84F39C8816A5926F00B08475 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
@@ -190,14 +193,12 @@
 		7F9EC6E816B1E9E700F6D45C /* ManagedObjects */ = {
 			isa = PBXGroup;
 			children = (
-				7F9EC6E916B1E9E700F6D45C /* Root.h */,
-				7F9EC6EA16B1E9E700F6D45C /* Root.m */,
-				7F9EC6EB16B1E9E700F6D45C /* SiteContent.h */,
-				7F9EC6EC16B1E9E700F6D45C /* SiteContent.m */,
-				7F9EC6ED16B1E9E700F6D45C /* SiteInfo.h */,
-				7F9EC6EE16B1E9E700F6D45C /* SiteInfo.m */,
-				7F9EC6EF16B1E9E700F6D45C /* SiteLink.h */,
-				7F9EC6F016B1E9E700F6D45C /* SiteLink.m */,
+				84C4B8D616B2E3E000B4A645 /* SiteContent.h */,
+				84C4B8D716B2E3E000B4A645 /* SiteContent.m */,
+				84C4B8D816B2E3E000B4A645 /* SiteInfo.h */,
+				84C4B8D916B2E3E000B4A645 /* SiteInfo.m */,
+				84C4B8DC16B2E55B00B4A645 /* SiteLink.h */,
+				84C4B8DD16B2E55B00B4A645 /* SiteLink.m */,
 			);
 			path = ManagedObjects;
 			sourceTree = "<group>";
@@ -304,6 +305,24 @@
 				8414B88116A06668005C3C70 /* RRAppDelegate.m */,
 			);
 			path = RRAppDelegate;
+			sourceTree = "<group>";
+		};
+		8417118B16B2C7570015698B /* CoreDataSupport */ = {
+			isa = PBXGroup;
+			children = (
+				8417119216B2C7ED0015698B /* RRCoreDataSupport.h */,
+				8417119316B2C7ED0015698B /* RRCoreDataSupport.m */,
+			);
+			path = CoreDataSupport;
+			sourceTree = "<group>";
+		};
+		8417118C16B2C7570015698B /* TableViewCellSupport */ = {
+			isa = PBXGroup;
+			children = (
+				8417119016B2C7B90015698B /* RRTableViewCellSupport.h */,
+				8417119116B2C7B90015698B /* RRTableViewCellSupport.m */,
+			);
+			path = TableViewCellSupport;
 			sourceTree = "<group>";
 		};
 		841975B316A96BE200DBB9E7 /* Core */ = {
@@ -451,6 +470,8 @@
 			isa = PBXGroup;
 			children = (
 				841975F216A96D6E00DBB9E7 /* Support.h */,
+				8417118B16B2C7570015698B /* CoreDataSupport */,
+				8417118C16B2C7570015698B /* TableViewCellSupport */,
 			);
 			path = Support;
 			sourceTree = "<group>";
@@ -594,10 +615,11 @@
 				844D13DE16AEA3CD00FAF33C /* Model.xcdatamodeld in Sources */,
 				847D906216AED48B0089B055 /* RRManagedObjectContext.m in Sources */,
 				8414A18316B02CED00E0041A /* RRAllNewsCell.m in Sources */,
-				7F9EC6F116B1E9E700F6D45C /* Root.m in Sources */,
-				7F9EC6F216B1E9E700F6D45C /* SiteContent.m in Sources */,
-				7F9EC6F316B1E9E700F6D45C /* SiteInfo.m in Sources */,
-				7F9EC6F416B1E9E700F6D45C /* SiteLink.m in Sources */,
+				8417119416B2C7ED0015698B /* RRCoreDataSupport.m in Sources */,
+				84C4B8BB16B2CE6500B4A645 /* RRTableViewCellSupport.m in Sources */,
+				84C4B8DA16B2E3E000B4A645 /* SiteContent.m in Sources */,
+				84C4B8DB16B2E3E000B4A645 /* SiteInfo.m in Sources */,
+				84C4B8DE16B2E55B00B4A645 /* SiteLink.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

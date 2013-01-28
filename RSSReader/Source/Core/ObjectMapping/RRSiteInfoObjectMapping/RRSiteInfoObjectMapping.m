@@ -13,17 +13,18 @@
 @synthesize link;
 @synthesize entries;
 
-+ (RKObjectMapping *)objectMapping
++ (RKEntityMapping *)objectMapping
 {
-    RKObjectMapping *siteInfo = [RKObjectMapping mappingForClass:[self class]];
+    RKEntityMapping *siteInfo = [RKEntityMapping mappingForEntityForName:SiteInfoEntityName
+                                                    inManagedObjectStore:[[RKObjectManager sharedManager] managedObjectStore]];
     [siteInfo addAttributeMappingsFromDictionary:
     @{
         @"title": @"title",
-        @"link": @"link",
+       // @"link": @"link",
     }];
     
     [siteInfo addPropertyMapping:[RKRelationshipMapping relationshipMappingFromKeyPath:@"entries"
-                                                                             toKeyPath:@"entries"
+                                                                             toKeyPath:@"siteNews"
                                                                            withMapping:[RRNewDetailObjectMapping objectMapping]]];
     return siteInfo;
 }

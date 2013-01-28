@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface RRSettingsVC : UIViewController <UITableViewDataSource,
-                                            UITableViewDelegate>
+@interface RRSettingsVC : UIViewController
 
 @end

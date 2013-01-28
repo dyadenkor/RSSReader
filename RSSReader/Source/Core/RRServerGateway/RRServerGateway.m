@@ -15,9 +15,6 @@
 
 - (void)sendData
 {
-    // Enable Activity Indicator Spinner
-    [AFNetworkActivityIndicatorManager sharedManager].enabled = YES;
-    
     // Setup RestKit
     [RKMIMETypeSerialization registerClass:[RKNSJSONSerialization class]
                                forMIMEType:@"text/javascript"];
@@ -26,29 +23,21 @@
     RKObjectManager *objectManager = [RKObjectManager managerWithBaseURL:[NSURL URLWithString:SERVER_BASE_URL_STRING]];
     
     // managed object model
-    NSURL *pathToModel = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"Model"
+/* NSURL *pathToModel = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"Model"
                                                                                 ofType:@"momd"]];
-    
     NSManagedObjectModel *managedObjectModel = [[[NSManagedObjectModel alloc] initWithContentsOfURL:pathToModel] mutableCopy];
-    
+*/
+    NSManagedObjectModel *managedObjectModel = [NSManagedObjectModel mergedModelFromBundles:nil];
+
     // managed object store
     RKManagedObjectStore *managedObjectStore = [[RKManagedObjectStore alloc] initWithManagedObjectModel:managedObjectModel];
     objectManager.managedObjectStore = managedObjectStore;
     
     // object mappings
-    RKEntityMapping *entityMapping = [RKEntityMapping mappingForEntityForName:@"Root" // entity name
-                                                         inManagedObjectStore:managedObjectStore];
-    
-    entityMapping.identificationAttributes = @[ @"someId" ];
-    
-    [entityMapping addAttributeMappingsFromDictionary:
-     @{
-        @"id"               : @"someId",
-        @"responseStatus"   : @"statusCode"
-     }];
+    RKObjectMapping *objectMapping = [RRRootResponseObjectMapping objectMapping];
     
     // Register our mappings with the provider
-    RKResponseDescriptor *responseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:entityMapping
+    RKResponseDescriptor *responseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:objectMapping
                                                                                        pathPattern:nil
                                                                                            keyPath:nil
                                                                                        statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)];
@@ -83,10 +72,14 @@
     
     [objectManager getObjectsAtPath:pathToResource
                          parameters:nil
-                            success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+                            success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult)
+                            {
                                 NSLog(@"%@", [mappingResult firstObject]);
-                            } failure:^(RKObjectRequestOperation *operation, NSError *error) {
-                                NSLog(@"error: %@", error);
+                                [[self delegate] didRecieveResponceSucces:mappingResult];
+                            }
+                            failure:^(RKObjectRequestOperation *operation, NSError *error)
+                            {
+                                [[self delegate] didRecieveResponceFailure:error];
                             }];
 }
 

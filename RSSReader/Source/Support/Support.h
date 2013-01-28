@@ -25,15 +25,9 @@
 #import "SiteLink.h"
 #import "SiteInfo.h"
 #import "SiteContent.h"
-
+#import "RRCoreDataSupport.h"
 #import "RRManagedObjectContext.h"
 
 // RRTableViewCells
 #import "RRAllNewsCell.h"
-
-// entity names
-extern NSString *const SiteLinkEntityName;
-
-// cells identifier
-extern NSString *const SettingCellIdentyfier;
-extern NSString *const AllNewsVCCellIdentifier;
+#import "RRTableViewCellSupport.h"

@@ -8,9 +8,6 @@
 
 #import "RRSettingsVC.h"
 
-NSString * const SiteLinkEntityName = @"SiteLink";
-NSString * const SettingCellIdentyfier = @"SettingCellIdentyfier";
-
 @interface RRSettingsVC ()
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -38,10 +35,7 @@ NSString * const SettingCellIdentyfier = @"SettingCellIdentyfier";
     
     dataSource = [[NSMutableArray alloc] init];
     
-    if (![[self dataSource] count])
-    {
-        [self fetchData];
-    }
+    [self fetchData];
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -67,7 +61,7 @@ NSString * const SettingCellIdentyfier = @"SettingCellIdentyfier";
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [[self dataSource ] count];
+    return [[self dataSource] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)theTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -141,7 +135,7 @@ NSString * const SettingCellIdentyfier = @"SettingCellIdentyfier";
     
     if (error)
     {
-        NSLog(@"%s: error:%@", __PRETTY_FUNCTION__, [error description]);
+        assert(error);
     }
     
 }
@@ -152,7 +146,7 @@ NSString * const SettingCellIdentyfier = @"SettingCellIdentyfier";
     
     if ([[RRManagedObjectContext sharedManagedObjectContext] save:&error])
     {
-        NSLog(@"%s: error = %@", __PRETTY_FUNCTION__, [error description]);
+        NSLog(@"error = %@", [error description]);
         
         return error;
     }

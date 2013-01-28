@@ -9,10 +9,6 @@
 #import <Foundation/Foundation.h>
 
 @interface RRNewDetailObjectMapping : NSObject
-@property (nonatomic, copy) NSString *title;
-@property (nonatomic, copy) NSString *link;
-@property (nonatomic, strong) NSDate *date;
-@property (nonatomic, copy) NSString *content;
 
 + (RKEntityMapping *)objectMapping;
 

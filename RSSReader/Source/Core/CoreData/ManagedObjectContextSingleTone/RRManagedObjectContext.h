@@ -9,6 +9,5 @@
 #import <Foundation/Foundation.h>
 
 @interface RRManagedObjectContext : NSObject
-
 + (NSManagedObjectContext *)sharedManagedObjectContext;
 @end
