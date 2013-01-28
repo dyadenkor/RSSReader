@@ -19,9 +19,11 @@
 @synthesize tableView;
 @synthesize dataSource;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (id)initWithNibName:(NSString *)nibNameOrNil
+               bundle:(NSBundle *)nibBundleOrNil
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    self = [super initWithNibName:nibNameOrNil
+                           bundle:nibBundleOrNil];
     if (self)
     {
         // Custom initialization
@@ -95,24 +97,27 @@
 
 - (IBAction)addButtonAction:(id)sender
 {
-    RRAlertViewBlock *alert = [[RRAlertViewBlock alloc] initWithTitle:@"Add url" message:@"http://" textfield:YES completion:^(BOOL cancelled, NSInteger buttonIndex, NSString *text)
+    UITextField *alertTextField = [[UITextField alloc] init];
+    [alertTextField setText:@"http://"];
+    
+    RRAlertViewBlock *alert = [[RRAlertViewBlock alloc] initWithTitle:@"Add url"
+                                                              message:nil
+                                                            textfield:alertTextField
+                                                           completion:^(BOOL cancelled, NSInteger buttonIndex, NSString *text)
     {
         if (!cancelled)
         {
-            NSMutableString *newUrl = [[NSMutableString alloc] init];
-            [newUrl appendString:@"http://"];
-            [newUrl appendString:text];
-           
             SiteLink *siteLink = [NSEntityDescription insertNewObjectForEntityForName:SiteLinkEntityName
                                                                inManagedObjectContext:[RRManagedObjectContext sharedManagedObjectContext]];
 
-            [siteLink setLink:newUrl];
+            [siteLink setLink:text];
             
             [[self dataSource] addObject:siteLink];
             [[self tableView] reloadData];
         }
     }
-        cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil];
+                                                    cancelButtonTitle:@"Cancel"
+                                                    otherButtonTitles:@"OK", nil];
     
     [alert show];
 }

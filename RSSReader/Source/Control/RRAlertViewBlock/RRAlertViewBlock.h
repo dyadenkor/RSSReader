@@ -12,7 +12,7 @@
 
 - (id)initWithTitle:(NSString *)title
             message:(NSString *)message
-          textfield:(BOOL)needTextField
+          textfield:(UITextField *)textField
          completion:(void (^)(BOOL cancelled, NSInteger buttonIndex, NSString *text))completion
   cancelButtonTitle:(NSString *)cancelButtonTitle
   otherButtonTitles:(NSString *)otherButtonTitles, ... NS_REQUIRES_NIL_TERMINATION;

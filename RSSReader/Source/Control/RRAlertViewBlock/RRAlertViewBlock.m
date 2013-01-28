@@ -18,19 +18,25 @@
 
 - (id)initWithTitle:(NSString *)title
             message:(NSString *)message
-          textfield:(BOOL)needTextField
+          textfield:(UITextField *)textField
          completion:(void (^)(BOOL cancelled, NSInteger buttonIndex, NSString *text)) completion
   cancelButtonTitle:(NSString *)cancelButtonTitle
   otherButtonTitles:(NSString *)otherButtonTitles, ... {
     
-    self = [self initWithTitle:title message:message delegate:self cancelButtonTitle:cancelButtonTitle otherButtonTitles:nil ];
+    self = [self initWithTitle:title
+                       message:message
+                      delegate:self
+             cancelButtonTitle:cancelButtonTitle
+             otherButtonTitles:nil ];
    
-    if (needTextField)
+    if (textField)
     {
         [self setAlertViewStyle:UIAlertViewStylePlainTextInput];
+        [[self textFieldAtIndex:0] setText:[textField text]];
     }
     
-    if (self) {
+    if (self)
+    {
         _completion = completion;
         
         va_list _arguments;
@@ -41,12 +47,20 @@
         }
         va_end(_arguments);
     }
+    
     return self;
 }
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
-    self.completion(buttonIndex==self.cancelButtonIndex, buttonIndex, [[alertView textFieldAtIndex:0] text]);
+    NSString *alertTextFieldText;
+    
+    if ([alertView alertViewStyle] == UIAlertViewStylePlainTextInput)
+    {
+        alertTextFieldText = [[alertView textFieldAtIndex:0] text];
+    }
+    
+    self.completion(buttonIndex==self.cancelButtonIndex, buttonIndex, alertTextFieldText);
 }
 
 @end

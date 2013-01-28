@@ -23,12 +23,13 @@
 @synthesize tableView;
 @synthesize links;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (id)initWithNibName:(NSString *)nibNameOrNil
+               bundle:(NSBundle *)nibBundleOrNil
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
+    self = [super initWithNibName:nibNameOrNil
+                           bundle:nibBundleOrNil];
+    if (self){}
+    
     return self;
 }
 
@@ -38,7 +39,6 @@
     
     dataSource = [[NSMutableArray alloc] init];
     links = [[NSMutableArray alloc] init];
-	// Do any additional setup after loading the view.
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -57,17 +57,27 @@
     }
     else
     {
-        //[[self tabBarController] setSelectedIndex:3];
+        RRAlertViewBlock *alert = [[RRAlertViewBlock alloc] initWithTitle:@"NO links in settings"
+                                                                  message:@"Please add them in Settings"
+                                                                textfield:NO
+                                                               completion:^(BOOL cancelled, NSInteger buttonIndex, NSString *text)
+                                   {
+                                       [[self tabBarController] setSelectedIndex:3];
+                                   }
+                                                        cancelButtonTitle:@"OK"
+                                                        otherButtonTitles:nil, nil];
+        
+        [alert show];
     }
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
-- (void)viewDidUnload {
+- (void)viewDidUnload
+{
     [self setTableView:nil];
     [super viewDidUnload];
 }
