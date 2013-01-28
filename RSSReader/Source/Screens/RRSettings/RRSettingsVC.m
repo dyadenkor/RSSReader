@@ -24,10 +24,8 @@
 {
     self = [super initWithNibName:nibNameOrNil
                            bundle:nibBundleOrNil];
-    if (self)
-    {
-        // Custom initialization
-    }
+    if (self){}
+    
     return self;
 }
 
@@ -40,21 +38,13 @@
     [self fetchData];
 }
 
--(void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-    
-    [self saveManagedObjectContext];
-}
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 
-#pragma mark UITableview
+#pragma mark - UITableview
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -93,7 +83,7 @@
     }
 }
 
-#pragma mark NavigationItemsAction
+#pragma mark - NavigationItemsAction
 
 - (IBAction)addButtonAction:(id)sender
 {
@@ -114,6 +104,8 @@
             
             [[self dataSource] addObject:siteLink];
             [[self tableView] reloadData];
+            
+            [self saveManagedObjectContext];
         }
     }
                                                     cancelButtonTitle:@"Cancel"
@@ -122,7 +114,7 @@
     [alert show];
 }
 
-#pragma mark Private methods
+#pragma mark - Private methods
 
 - (void)fetchData
 {
@@ -131,8 +123,7 @@
     
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     [request setEntity:entity];
-    
-    
+        
     NSError *error = nil;
     
     [[self dataSource] addObjectsFromArray:[[RRManagedObjectContext sharedManagedObjectContext] executeFetchRequest:request

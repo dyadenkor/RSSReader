@@ -39,6 +39,7 @@
     
     dataSource = [[NSMutableArray alloc] init];
     links = [[NSMutableArray alloc] init];
+    serverGateWay = [[RRServerGateway alloc] init];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -57,9 +58,9 @@
     }
     else
     {
-        RRAlertViewBlock *alert = [[RRAlertViewBlock alloc] initWithTitle:@"NO links in settings"
+        RRAlertViewBlock *alert = [[RRAlertViewBlock alloc] initWithTitle:@"No links in settings"
                                                                   message:@"Please add them in Settings"
-                                                                textfield:NO
+                                                                textfield:nil
                                                                completion:^(BOOL cancelled, NSInteger buttonIndex, NSString *text)
                                    {
                                        [[self tabBarController] setSelectedIndex:3];
@@ -147,8 +148,6 @@
 
 - (void)loadNews
 {
-    serverGateWay = [[RRServerGateway alloc] init];
-    
     for (SiteLink *item in [self links])
     {
         [serverGateWay setBaseURL:[item link]];

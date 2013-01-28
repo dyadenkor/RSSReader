@@ -14,7 +14,7 @@
 {
      RKEntityMapping* newDetail = [RKEntityMapping mappingForEntityForName:SiteContentEntityName
                                                       inManagedObjectStore:[[RKObjectManager sharedManager] managedObjectStore]];
-    
+    newDetail.identificationAttributes = @[ @"newsTitle" ];
     [newDetail addAttributeMappingsFromDictionary:
      @{
      @"title": @"newsTitle",

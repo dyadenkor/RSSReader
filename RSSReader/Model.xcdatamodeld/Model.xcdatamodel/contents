@@ -9,14 +9,16 @@
     </entity>
     <entity name="SiteInfo" representedClassName="SiteInfo" syncable="YES">
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="siteLink" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="SiteLink" inverseName="siteInfo" inverseEntity="SiteLink" syncable="YES"/>
         <relationship name="siteNews" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SiteContent" inverseName="siteInfo" inverseEntity="SiteContent" syncable="YES"/>
     </entity>
     <entity name="SiteLink" representedClassName="SiteLink" syncable="YES">
         <attribute name="link" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="siteInfo" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="SiteInfo" inverseName="siteLink" inverseEntity="SiteInfo" syncable="YES"/>
     </entity>
     <elements>
         <element name="SiteContent" positionX="54" positionY="-45" width="128" height="120"/>
-        <element name="SiteInfo" positionX="-126" positionY="-84" width="128" height="75"/>
-        <element name="SiteLink" positionX="-29" positionY="-225" width="128" height="60"/>
+        <element name="SiteInfo" positionX="-126" positionY="-84" width="128" height="90"/>
+        <element name="SiteLink" positionX="-297" positionY="-195" width="128" height="75"/>
     </elements>
 </model>

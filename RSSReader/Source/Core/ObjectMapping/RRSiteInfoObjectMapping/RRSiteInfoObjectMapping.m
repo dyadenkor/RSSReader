@@ -17,6 +17,7 @@
 {
     RKEntityMapping *siteInfo = [RKEntityMapping mappingForEntityForName:SiteInfoEntityName
                                                     inManagedObjectStore:[[RKObjectManager sharedManager] managedObjectStore]];
+    siteInfo.identificationAttributes = @[ @"title" ];
     [siteInfo addAttributeMappingsFromDictionary:
     @{
         @"title": @"title",
