@@ -22,7 +22,6 @@
 #import "RRAlertViewBlock.h"
 
 // CoreData
-#import "SiteLink.h"
 #import "SiteInfo.h"
 #import "SiteContent.h"
 #import "RRCoreDataSupport.h"

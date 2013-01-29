@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface RRAllNewsVC : UIViewController <RRServerGatewayDelegate>
+@interface RRAllNewsVC : UIViewController
 
 @end

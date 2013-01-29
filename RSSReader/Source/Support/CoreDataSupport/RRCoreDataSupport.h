@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-extern NSString *const SiteLinkEntityName;
 extern NSString *const SiteContentEntityName;
 extern NSString *const SiteInfoEntityName;
 extern NSString *const ServerBaseURL;

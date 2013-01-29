@@ -19,6 +19,7 @@
     [siteInfo addAttributeMappingsFromDictionary:
     @{
         @"title": @"title",
+        @"feedUrl": @"siteUrl"
     }];
     
     [siteInfo addPropertyMapping:[RKRelationshipMapping relationshipMappingFromKeyPath:@"entries"

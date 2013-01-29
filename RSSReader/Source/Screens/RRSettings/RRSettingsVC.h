@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface RRSettingsVC : UIViewController
+@interface RRSettingsVC : UIViewController <RRServerGatewayDelegate>
 
 @end

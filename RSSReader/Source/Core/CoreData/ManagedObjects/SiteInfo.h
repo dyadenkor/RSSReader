@@ -2,19 +2,19 @@
 //  SiteInfo.h
 //  RSSReader
 //
-//  Created by admin on 1/28/13.
+//  Created by admin on 1/29/13.
 //  Copyright (c) 2013 Roman Dyadenko. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class SiteContent, SiteLink;
+@class SiteContent;
 
 @interface SiteInfo : NSManagedObject
 
 @property (nonatomic, retain) NSString * title;
-@property (nonatomic, retain) SiteLink *siteLink;
+@property (nonatomic, retain) NSString * siteUrl;
 @property (nonatomic, retain) NSSet *siteNews;
 @end
 

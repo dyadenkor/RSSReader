@@ -11,13 +11,12 @@
 @interface RRSettingsVC ()
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (nonatomic, strong) NSMutableArray *dataSource;
+@property (nonatomic) NSMutableArray *dataSource;
+@property (nonatomic) RRServerGateway *serverGateWay;
 
 @end
 
 @implementation RRSettingsVC
-@synthesize tableView;
-@synthesize dataSource;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil
                bundle:(NSBundle *)nibBundleOrNil
@@ -33,7 +32,8 @@
 {
     [super viewDidLoad];
     
-    dataSource = [[NSMutableArray alloc] init];
+    self.dataSource = [[NSMutableArray alloc] init];
+    self.serverGateWay = [[RRServerGateway alloc] init];
     
     [self fetchData];
 }
@@ -42,7 +42,6 @@
 {
     [super didReceiveMemoryWarning];
 }
-
 
 #pragma mark - UITableview
 
@@ -60,9 +59,9 @@
 {
     UITableViewCell *cell = [theTableView dequeueReusableCellWithIdentifier:SettingCellIdentyfier];
     
-    SiteLink *item = [[self dataSource] objectAtIndex:[indexPath row]];
+    SiteInfo *item = [[self dataSource] objectAtIndex:[indexPath row]];
 
-    [[cell textLabel] setText:[item link]];
+    [[cell textLabel] setText:[item siteUrl]];
     
     return cell;
 }
@@ -72,7 +71,7 @@
 {
     if (editingStyle == UITableViewCellEditingStyleDelete)
     {
-        SiteLink *deleteLink = [[self dataSource] objectAtIndex:[indexPath row]];
+        SiteInfo *deleteLink = [[self dataSource] objectAtIndex:[indexPath row]];
         NSManagedObjectContext *context = [RRManagedObjectContext sharedManagedObjectContext];
         [context deleteObject:deleteLink];
         
@@ -97,15 +96,7 @@
     {
         if (!cancelled)
         {
-            SiteLink *siteLink = [NSEntityDescription insertNewObjectForEntityForName:SiteLinkEntityName
-                                                               inManagedObjectContext:[RRManagedObjectContext sharedManagedObjectContext]];
-
-            [siteLink setLink:text];
-            
-            [[self dataSource] addObject:siteLink];
-            [[self tableView] reloadData];
-            
-            [self saveManagedObjectContext];
+            [self loadNews:text];
         }
     }
                                                     cancelButtonTitle:@"Cancel"
@@ -114,16 +105,31 @@
     [alert show];
 }
 
+#pragma mark RRServerGatewayDelegate
+
+- (void)didRecieveResponceFailure:(NSError *)error
+{
+    NSLog(@"Error   -----   %@",error);
+}
+
+- (void)didRecieveResponceSucces:(RKMappingResult *)mappingResult
+{
+    [self fetchData];
+    [[self tableView] reloadData];
+}
+
 #pragma mark - Private methods
 
 - (void)fetchData
 {
-    NSEntityDescription *entity = [NSEntityDescription entityForName:SiteLinkEntityName
+    [[self dataSource] removeAllObjects];
+    
+    NSEntityDescription *entity = [NSEntityDescription entityForName:SiteInfoEntityName
                                               inManagedObjectContext:[RRManagedObjectContext sharedManagedObjectContext]];
     
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     [request setEntity:entity];
-        
+    
     NSError *error = nil;
     
     [[self dataSource] addObjectsFromArray:[[RRManagedObjectContext sharedManagedObjectContext] executeFetchRequest:request
@@ -133,7 +139,6 @@
     {
         assert(error);
     }
-    
 }
 
 - (NSError *)saveManagedObjectContext
@@ -148,6 +153,14 @@
     }
     
     return error;
+}
+
+- (void)loadNews:(NSString *)link
+{
+    [[self serverGateWay] setBaseURL:link];
+    [[self serverGateWay] sendData];
+    
+    [[self serverGateWay] setDelegate:self];
 }
 
 @end

@@ -10,7 +10,6 @@
 
 @interface RRAllNewsVC ()
 
-@property (nonatomic, strong) RRServerGateway *serverGateWay;
 @property (nonatomic, strong) NSMutableArray *dataSource;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *links;
@@ -18,10 +17,6 @@
 @end
 
 @implementation RRAllNewsVC
-@synthesize serverGateWay;
-@synthesize dataSource;
-@synthesize tableView;
-@synthesize links;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil
                bundle:(NSBundle *)nibBundleOrNil
@@ -37,24 +32,18 @@
 {
     [super viewDidLoad];
     
-    dataSource = [[NSMutableArray alloc] init];
-    links = [[NSMutableArray alloc] init];
-    serverGateWay = [[RRServerGateway alloc] init];
+    self.dataSource = [[NSMutableArray alloc] init];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
     
-    [[self dataSource] removeAllObjects];
-    [[self tableView] reloadData];
+    [[self dataSource] setArray:[self fetchData:SiteInfoEntityName]];
     
-    [[self links] removeAllObjects];
-    [[self links] setArray:[self fetchData:SiteLinkEntityName]];
-    
-    if ([[self links] count])
+    if ([[self dataSource] count])
     {
-        [self loadNews];
+        [[self tableView] reloadData];
     }
     else
     {
@@ -99,8 +88,9 @@
 {
     RRAllNewsCell *cell = [theTableView dequeueReusableCellWithIdentifier:AllNewsVCCellIdentifier];
     
-    RRAllNewsDataSourceItem *site = [[self dataSource] objectAtIndex:[indexPath section]];
-    SiteContent *news = [[site siteNews] objectAtIndex:[indexPath row]];
+    SiteInfo *site = [[self dataSource] objectAtIndex:[indexPath section]];
+    NSMutableArray *arrayFromNSSet = [NSMutableArray arrayWithArray:[[site siteNews] allObjects]];
+    SiteContent *news = [arrayFromNSSet objectAtIndex:[indexPath row]];
     
     [[cell description] setText:[news newsContent]];
     [[cell title] setText:[news newsTitle]];
@@ -115,51 +105,9 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    return [[[self dataSource] objectAtIndex:section] siteName];
-}
-
-#pragma mark RRServerGatewayDelegate
-
-- (void) didRecieveResponceFailure:(NSError *)error
-{
-    NSLog(@"Error   -----   %@",error);
-}
-
-- (void) didRecieveResponceSucces:(RKMappingResult *)mappingResult
-{
-    [[self dataSource] removeAllObjects];
+    SiteInfo *item = [[self dataSource] objectAtIndex:section];
     
-    NSMutableArray *arrayOfLinks = [[NSMutableArray alloc] init];
-    
-    [arrayOfLinks setArray:[self fetchData:SiteInfoEntityName]];
-   
-    for (SiteInfo *site in arrayOfLinks)
-    {
-        RRAllNewsDataSourceItem *item = [[RRAllNewsDataSourceItem alloc] init];
-        [item setSiteName:[site title]];
-        
-        NSMutableArray *array = [NSMutableArray arrayWithArray:[[site siteNews] allObjects]];
-        
-        [item setSiteNews:array];
-        
-        [[self dataSource] addObject:item];
-    }
-    
-    [[self tableView] reloadData];
-}
-
-#pragma mark Private methods
-
-- (void)loadNews
-{
-    for (SiteLink *item in [self links])
-    {
-        [serverGateWay setBaseURL:[item link]];
-    
-        [serverGateWay sendData];
-    }
-    
-    [serverGateWay setDelegate:self];
+    return [item title];
 }
 
 - (NSMutableArray *)fetchData:(NSString *)entityName

@@ -8,7 +8,6 @@
 
 #import "RRCoreDataSupport.h"
 
-NSString * const SiteLinkEntityName = @"SiteLink";
 NSString * const SiteContentEntityName = @"SiteContent";
 NSString * const SiteInfoEntityName = @"SiteInfo";
 NSString * const ServerBaseURL = @"https://ajax.googleapis.com";
