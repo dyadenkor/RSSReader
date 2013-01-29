@@ -2,7 +2,6 @@
 <model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1810" systemVersion="11E53" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="SiteContent" representedClassName="SiteContent" syncable="YES">
         <attribute name="newsContent" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="newsDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="newsLink" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="newsTitle" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="siteInfo" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="SiteInfo" inverseName="siteNews" inverseEntity="SiteInfo" syncable="YES"/>
@@ -17,7 +16,7 @@
         <relationship name="siteInfo" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="SiteInfo" inverseName="siteLink" inverseEntity="SiteInfo" syncable="YES"/>
     </entity>
     <elements>
-        <element name="SiteContent" positionX="54" positionY="-45" width="128" height="120"/>
+        <element name="SiteContent" positionX="54" positionY="-45" width="128" height="105"/>
         <element name="SiteInfo" positionX="-126" positionY="-84" width="128" height="90"/>
         <element name="SiteLink" positionX="-297" positionY="-195" width="128" height="75"/>
     </elements>

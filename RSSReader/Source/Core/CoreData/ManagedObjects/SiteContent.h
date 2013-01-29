@@ -14,7 +14,6 @@
 @interface SiteContent : NSManagedObject
 
 @property (nonatomic, retain) NSString * newsContent;
-@property (nonatomic, retain) NSDate * newsDate;
 @property (nonatomic, retain) NSString * newsLink;
 @property (nonatomic, retain) NSString * newsTitle;
 @property (nonatomic, retain) SiteInfo *siteInfo;

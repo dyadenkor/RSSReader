@@ -127,6 +127,8 @@
 
 - (void) didRecieveResponceSucces:(RKMappingResult *)mappingResult
 {
+    [[self dataSource] removeAllObjects];
+    
     NSMutableArray *arrayOfLinks = [[NSMutableArray alloc] init];
     
     [arrayOfLinks setArray:[self fetchData:SiteInfoEntityName]];
@@ -136,7 +138,9 @@
         RRAllNewsDataSourceItem *item = [[RRAllNewsDataSourceItem alloc] init];
         [item setSiteName:[site title]];
         
-        [item setSiteNews:[self fetchData:SiteContentEntityName]];
+        NSMutableArray *array = [NSMutableArray arrayWithArray:[[site siteNews] allObjects]];
+        
+        [item setSiteNews:array];
         
         [[self dataSource] addObject:item];
     }

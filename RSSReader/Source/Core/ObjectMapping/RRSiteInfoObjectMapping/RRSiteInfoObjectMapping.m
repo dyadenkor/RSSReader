@@ -9,8 +9,6 @@
 #import "RRSiteInfoObjectMapping.h"
 
 @implementation RRSiteInfoObjectMapping
-@synthesize title;
-@synthesize link;
 @synthesize entries;
 
 + (RKEntityMapping *)objectMapping
@@ -21,7 +19,6 @@
     [siteInfo addAttributeMappingsFromDictionary:
     @{
         @"title": @"title",
-       // @"link": @"link",
     }];
     
     [siteInfo addPropertyMapping:[RKRelationshipMapping relationshipMappingFromKeyPath:@"entries"

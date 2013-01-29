@@ -13,7 +13,6 @@
 @implementation SiteContent
 
 @dynamic newsContent;
-@dynamic newsDate;
 @dynamic newsLink;
 @dynamic newsTitle;
 @dynamic siteInfo;

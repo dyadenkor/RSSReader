@@ -27,6 +27,8 @@
             [RKMIMETypeSerialization registerClass:[RKNSJSONSerialization class]
                                        forMIMEType:@"text/javascript"];
             
+            [AFNetworkActivityIndicatorManager sharedManager].enabled = YES;
+            
             // object manager
             self.objectManager = [RKObjectManager managerWithBaseURL:[NSURL URLWithString:ServerBaseURL]];
             
@@ -54,8 +56,8 @@
             
             NSString *storePath = [RKApplicationDataDirectory() stringByAppendingPathComponent:@"Model.sqlite"];
             
-            NSString *seedPath = [[NSBundle mainBundle] pathForResource:@"Model"
-                                                                 ofType:@"sqlite"];
+            NSString *seedPath = [NSBundle.mainBundle pathForResource:@"Model"
+                                                               ofType:@"sqlite"];
             
             NSError *error = nil;
             NSPersistentStore *persistentStore = [self.managedObjectStore addSQLitePersistentStoreAtPath:storePath
@@ -88,12 +90,11 @@
                          parameters:nil
                             success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult)
                             {
-                                NSLog(@"%@", [mappingResult firstObject]);
-                                [[self delegate] didRecieveResponceSucces:mappingResult];
+                                [self.delegate didRecieveResponceSucces:mappingResult];
                             }
                             failure:^(RKObjectRequestOperation *operation, NSError *error)
                             {
-                                [[self delegate] didRecieveResponceFailure:error];
+                                [self.delegate didRecieveResponceFailure:error];
                             }];
 }
 

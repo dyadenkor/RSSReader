@@ -19,7 +19,6 @@
      @{
      @"title": @"newsTitle",
      @"link": @"newsLink",
-     //@"publishedDate": @"date",
      @"content": @"newsContent"
      }];
     

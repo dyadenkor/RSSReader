@@ -9,7 +9,6 @@
 #import "SiteLink.h"
 #import "SiteInfo.h"
 
-
 @implementation SiteLink
 
 @dynamic link;

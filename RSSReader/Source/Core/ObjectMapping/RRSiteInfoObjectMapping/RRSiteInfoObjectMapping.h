@@ -9,8 +9,6 @@
 #import <Foundation/Foundation.h>
 
 @interface RRSiteInfoObjectMapping : NSObject
-@property (nonatomic,copy) NSString *title;
-@property (nonatomic,copy) NSString *link;
 @property (nonatomic, strong) NSMutableArray *entries;
 
 + (RKEntityMapping *)objectMapping;
