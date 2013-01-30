@@ -157,8 +157,7 @@
 
 - (void)loadNews:(NSString *)link
 {
-    [[self serverGateWay] setBaseURL:link];
-    [[self serverGateWay] sendData];
+    [[self serverGateWay] sendData:link];
     
     [[self serverGateWay] setDelegate:self];
 }
