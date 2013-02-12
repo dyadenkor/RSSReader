@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7F9EC6CB16B1D42200F6D45C /* libRestKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F9EC6A316B1D30A00F6D45C /* libRestKit.a */; };
+		8401D24716B9604000FC69EB /* refreshButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 8401D24616B9604000FC69EB /* refreshButton.png */; };
 		8414A18316B02CED00E0041A /* RRAllNewsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8414A18216B02CED00E0041A /* RRAllNewsCell.m */; };
 		8414B85C16A065FF005C3C70 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8414B85B16A065FF005C3C70 /* UIKit.framework */; };
 		8414B85E16A065FF005C3C70 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8414B85D16A065FF005C3C70 /* Foundation.framework */; };
@@ -83,6 +84,7 @@
 
 /* Begin PBXFileReference section */
 		7F9EC41516B1D30900F6D45C /* RestKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = RestKit.xcodeproj; sourceTree = "<group>"; };
+		8401D24616B9604000FC69EB /* refreshButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = refreshButton.png; sourceTree = "<group>"; };
 		8414A18116B02CED00E0041A /* RRAllNewsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRAllNewsCell.h; sourceTree = "<group>"; };
 		8414A18216B02CED00E0041A /* RRAllNewsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RRAllNewsCell.m; sourceTree = "<group>"; };
 		8414B85716A065FF005C3C70 /* RSSReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RSSReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -268,6 +270,7 @@
 		8414B86216A065FF005C3C70 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				8401D24616B9604000FC69EB /* refreshButton.png */,
 				8414B87316A065FF005C3C70 /* MainStoryboard.storyboard */,
 				844D13DC16AEA3CD00FAF33C /* Model.xcdatamodeld */,
 				8414B86316A065FF005C3C70 /* RSSReader-Info.plist */,
@@ -584,6 +587,7 @@
 				8414B87016A065FF005C3C70 /* Default@2x.png in Resources */,
 				8414B87216A065FF005C3C70 /* Default-568h@2x.png in Resources */,
 				8414B87516A065FF005C3C70 /* MainStoryboard.storyboard in Resources */,
+				8401D24716B9604000FC69EB /* refreshButton.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

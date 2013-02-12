@@ -12,7 +12,7 @@
 
 @property (nonatomic, strong) NSMutableArray *dataSource;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (nonatomic, strong) NSMutableArray *links;
+@property (nonatomic) RRServerGateway *serverGateWay;
 
 @end
 
@@ -33,6 +33,7 @@
     [super viewDidLoad];
     
     self.dataSource = [[NSMutableArray alloc] init];
+    self.serverGateWay = [[RRServerGateway alloc] init];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -72,7 +73,7 @@
     [super viewDidUnload];
 }
 
-#pragma mark UITableview
+#pragma mark - UITableview
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -81,6 +82,8 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    SiteInfo *item = [[self dataSource] objectAtIndex:section];
+    NSLog(@"%i",[[item siteNews] count]);
     return [[[[self dataSource] objectAtIndex:section] siteNews] count];
 }
 
@@ -100,15 +103,51 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 20;
+    return 30;
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     SiteInfo *item = [[self dataSource] objectAtIndex:section];
     
-    return [item title];
+    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [[self view] frame].size.width , 30.0)];
+    [headerView setBackgroundColor:[UIColor colorWithRed:163/255 green:169/255 blue:171/255 alpha:1]];
+    [headerView setAlpha:0.6];
+    
+    UIButton *refreshButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [refreshButton setFrame:CGRectMake([[self view] frame].size.width - 40, 0, 30.0, 30.0)];
+    [refreshButton setTag:section];
+    [refreshButton setImage:[UIImage imageNamed: @"refreshButton.png"] forState:UIControlStateNormal];
+    [refreshButton addTarget:self
+                      action:@selector(refreshButtonPressed:)
+            forControlEvents:UIControlEventTouchDown];
+    
+    [headerView addSubview:refreshButton];
+    
+    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, [[self view] frame].size.width  - 50, 30.0)];
+    [titleLabel setText:[item title]];
+    [titleLabel setTextColor:[UIColor whiteColor]];
+    [titleLabel setBackgroundColor:[UIColor clearColor]];
+    
+    [headerView addSubview:titleLabel];
+    
+    return headerView;
 }
+
+#pragma mark - RRServerGatewayDelegate
+
+- (void)didRecieveResponceFailure:(NSError *)error
+{
+    NSLog(@"Error   -----   %@",error);
+}
+
+- (void)didRecieveResponceSucces:(RKMappingResult *)mappingResult
+{
+    [[self dataSource] setArray:[self fetchData:SiteInfoEntityName]];
+    [[self tableView] reloadData];
+}
+
+#pragma mark - Private methods
 
 - (NSMutableArray *)fetchData:(NSString *)entityName
 {
@@ -130,6 +169,20 @@
     }
     
     return resultArray;
+}
+
+- (void)refreshButtonPressed:(id)sender
+{
+    NSString *url = [[[self dataSource] objectAtIndex:[sender tag]] siteUrl];
+    
+    SiteInfo *deleteSite = [[self dataSource] objectAtIndex:[sender tag]];
+    NSManagedObjectContext *context = [RRManagedObjectContext sharedManagedObjectContext];
+    [context deleteObject:deleteSite];
+    
+    [RRCoreDataSupport saveManagedObjectContext];
+    
+    [[self serverGateWay] sendData:url];
+    [[self serverGateWay] setDelegate:self];
 }
 
 @end

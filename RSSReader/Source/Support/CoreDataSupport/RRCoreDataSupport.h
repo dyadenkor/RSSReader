@@ -14,4 +14,6 @@ extern NSString *const ServerBaseURL;
 
 @interface RRCoreDataSupport : NSObject
 
++ (NSError *)saveManagedObjectContext;
+
 @end

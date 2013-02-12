@@ -80,12 +80,6 @@
     
     // Create the managed object contexts
     [managedObjectStore createManagedObjectContexts];
-    
-    // Configure a managed object cache to ensure we do not create duplicate objects
-    if (!managedObjectStore.managedObjectCache)
-    {
-        managedObjectStore.managedObjectCache = [[RKInMemoryManagedObjectCache alloc] initWithManagedObjectContext:managedObjectStore.persistentStoreManagedObjectContext];
-    }
 }
 
 @end

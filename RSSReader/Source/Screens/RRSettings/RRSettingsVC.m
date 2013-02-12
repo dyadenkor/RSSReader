@@ -71,11 +71,13 @@
 {
     if (editingStyle == UITableViewCellEditingStyleDelete)
     {
+        [self fetchData];
+        
         SiteInfo *deleteLink = [[self dataSource] objectAtIndex:[indexPath row]];
         NSManagedObjectContext *context = [RRManagedObjectContext sharedManagedObjectContext];
         [context deleteObject:deleteLink];
         
-        [self saveManagedObjectContext];
+        [RRCoreDataSupport saveManagedObjectContext];
         
         [[self dataSource] removeObjectAtIndex:indexPath.row];
         [[self tableView] reloadData];
@@ -114,6 +116,9 @@
 
 - (void)didRecieveResponceSucces:(RKMappingResult *)mappingResult
 {
+    RRRootResponseObjectMapping *item = [mappingResult firstObject];
+    NSLog(@"responceStatusCode = %@",[item responceStatusCode]);
+    
     [self fetchData];
     [[self tableView] reloadData];
 }
@@ -139,20 +144,6 @@
     {
         assert(error);
     }
-}
-
-- (NSError *)saveManagedObjectContext
-{
-    NSError *error = nil;
-    
-    if ([[RRManagedObjectContext sharedManagedObjectContext] save:&error])
-    {
-        NSLog(@"error = %@", [error description]);
-        
-        return error;
-    }
-    
-    return error;
 }
 
 - (void)loadNews:(NSString *)link

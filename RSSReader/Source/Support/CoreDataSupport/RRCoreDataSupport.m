@@ -14,4 +14,18 @@ NSString * const ServerBaseURL = @"https://ajax.googleapis.com";
 
 @implementation RRCoreDataSupport
 
++ (NSError *)saveManagedObjectContext
+{
+    NSError *error = nil;
+    
+    if ([[RRManagedObjectContext sharedManagedObjectContext] save:&error])
+    {
+        NSLog(@"error = %@", [error description]);
+        
+        return error;
+    }
+    
+    return error;
+}
+
 @end
