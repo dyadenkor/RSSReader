@@ -1,5 +1,5 @@
 //
-//  SiteContent.h
+//  FavouriteNewsInfo.h
 //  RSSReader
 //
 //  Created by admin on 2/12/13.
@@ -9,13 +9,11 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class SiteInfo;
 
-@interface SiteContent : NSManagedObject
+@interface FavouriteNewsInfo : NSManagedObject
 
-@property (nonatomic, retain) NSString * newsContent;
-@property (nonatomic, retain) NSString * newsLink;
 @property (nonatomic, retain) NSString * newsTitle;
-@property (nonatomic, retain) SiteInfo *siteInfo;
+@property (nonatomic, retain) NSString * newsDescription;
+@property (nonatomic, retain) NSData * newsContent;
 
 @end

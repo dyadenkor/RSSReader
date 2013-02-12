@@ -10,6 +10,7 @@
 
 NSString * const SiteContentEntityName = @"SiteContent";
 NSString * const SiteInfoEntityName = @"SiteInfo";
+NSString * const FavouriteNewsInfoEntityName = @"FavouriteNewsInfo";
 NSString * const ServerBaseURL = @"https://ajax.googleapis.com";
 
 @implementation RRCoreDataSupport

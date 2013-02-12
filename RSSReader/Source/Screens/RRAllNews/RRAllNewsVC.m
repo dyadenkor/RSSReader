@@ -134,6 +134,22 @@
     return headerView;
 }
 
+#pragma mark - UIStoryboardSegue
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([[segue identifier] isEqualToString:@"RRALLNEWSVC_TO_RRWEBVIEWVC"])
+    {
+        NSIndexPath *indexPath = [[self tableView] indexPathForCell:sender];
+        SiteInfo *site = [[self dataSource] objectAtIndex:[indexPath section]];
+        NSMutableArray *arrayFromNSSet = [NSMutableArray arrayWithArray:[[site siteNews] allObjects]];
+        SiteContent *news = [arrayFromNSSet objectAtIndex:[indexPath row]];
+        
+        RRWebViewVC *vc = [segue destinationViewController];
+        [vc setUrl:[news newsLink]];
+    }
+}
+
 #pragma mark - RRServerGatewayDelegate
 
 - (void)didRecieveResponceFailure:(NSError *)error
@@ -171,6 +187,8 @@
     return resultArray;
 }
 
+#pragma mark - Buttons Actions
+
 - (void)refreshButtonPressed:(id)sender
 {
     NSString *url = [[[self dataSource] objectAtIndex:[sender tag]] siteUrl];
@@ -183,6 +201,15 @@
     
     [[self serverGateWay] sendData:url];
     [[self serverGateWay] setDelegate:self];
+}
+
+- (IBAction)favouriteButtonAction:(id)sender
+{
+    UIButton *button = (UIButton *)sender;
+    RRAllNewsCell *cell = [[button superview] superview];
+    
+    NSIndexPath *indexPath = [[self tableView] indexPathForCell:cell];
+    
 }
 
 @end

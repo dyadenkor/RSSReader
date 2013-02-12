@@ -10,6 +10,7 @@
 
 extern NSString *const SiteContentEntityName;
 extern NSString *const SiteInfoEntityName;
+extern NSString *const FavouriteNewsInfoEntityName;
 extern NSString *const ServerBaseURL;
 
 @interface RRCoreDataSupport : NSObject
