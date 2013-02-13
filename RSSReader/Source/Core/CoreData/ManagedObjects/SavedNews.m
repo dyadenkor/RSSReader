@@ -11,8 +11,9 @@
 
 @implementation SavedNews
 
-@dynamic newsTitle;
-@dynamic newsDescription;
 @dynamic newsContent;
+@dynamic newsDescription;
+@dynamic newsTitle;
+@dynamic newsLink;
 
 @end

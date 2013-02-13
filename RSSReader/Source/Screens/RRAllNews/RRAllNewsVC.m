@@ -201,7 +201,25 @@
 
 - (IBAction)saveButtonAction:(id)sender
 {
+    SiteContent *news = [self detectNewsFromButton:(UIButton *)sender];
     
+    for (SavedNews *item in [RRCoreDataSupport fetchData:SavedNewsEntityName])
+    {
+        if ([[item newsTitle] isEqualToString:[news newsTitle]])
+        {
+            return;
+        }
+    }
+    
+    SavedNews *newItem = [NSEntityDescription insertNewObjectForEntityForName:SavedNewsEntityName
+                                                       inManagedObjectContext:[RRManagedObjectContext sharedManagedObjectContext]];
+    [newItem setNewsDescription:[news newsContent]];
+    [newItem setNewsTitle:[news newsTitle]];
+    [newItem setNewsContent:[NSData dataWithContentsOfURL:[NSURL URLWithString:[news newsLink]]]];
+    [newItem setNewsLink:[news newsLink]];
+    
+    [RRCoreDataSupport saveManagedObjectContext];
+   
 }
 
 #pragma mark - Private methods

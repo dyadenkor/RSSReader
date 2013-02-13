@@ -1,20 +1,20 @@
 //
-//  RRFavouriteNewsVC.m
+//  RRNotReadNewsVC.m
 //  RSSReader
 //
 //  Created by admin on 1/11/13.
 //  Copyright (c) 2013 Roman Dyadenko. All rights reserved.
 //
 
-#import "RRFavouriteNewsVC.h"
+#import "RRSavedNewsVC.h"
 
-@interface RRFavouriteNewsVC ()
+@interface RRSavedNewsVC ()
 @property (nonatomic) NSMutableArray *dataSource;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
 
-@implementation RRFavouriteNewsVC
+@implementation RRSavedNewsVC
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -37,8 +37,8 @@
 {
     [super viewDidAppear:animated];
     
-    [[self dataSource] setArray:[RRCoreDataSupport fetchData:FavouriteNewsInfoEntityName]];
-
+    [[self dataSource] setArray:[RRCoreDataSupport fetchData:SavedNewsEntityName]];
+    
     if ([[self dataSource] count])
     {
         [[self tableView] reloadData];
@@ -71,14 +71,13 @@
 
 - (UITableViewCell *)tableView:(UITableView *)theTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    RRAllNewsCell *cell = [theTableView dequeueReusableCellWithIdentifier:FavouriteNewsVCCellIdentifier];
+    RRAllNewsCell *cell = [theTableView dequeueReusableCellWithIdentifier:SavedNewsVCCellIdentifier];
     
-    FavouriteNewsInfo *news = [[self dataSource] objectAtIndex:[indexPath row]];
+    SavedNews *news = [[self dataSource] objectAtIndex:[indexPath row]];
     
     [[cell description] setText:[news newsDescription]];
     [[cell title] setText:[news newsTitle]];
     
-    [[cell favouriteButton] setTag:[indexPath row]];
     [[cell saveButton] setTag:[indexPath row]];
     
     return cell;
@@ -88,13 +87,13 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([[segue identifier] isEqualToString:@"RRFAVOURITENEWSVC_TO_RRWEBVIEWVC"])
+    if ([[segue identifier] isEqualToString:@"RRSAVEDNEWSVC_TO_RRWEBVIEWVC"])
     {
         NSIndexPath *indexPath = [[self tableView] indexPathForCell:sender];
-        FavouriteNewsInfo *news = [[self dataSource] objectAtIndex:[indexPath row]];
+        SavedNews *news = [[self dataSource] objectAtIndex:[indexPath row]];
         
         RRWebViewVC *vc = [segue destinationViewController];
-        [vc setUrl:[news newslink]];
+        [vc setSiteData:[news newsContent]];
     }
 }
 
@@ -102,7 +101,7 @@
 
 - (IBAction)deleteButtonAction:(id)sender
 {
-    FavouriteNewsInfo *deleteNews = [[self dataSource] objectAtIndex:[sender tag]];
+    SavedNews *deleteNews = [[self dataSource] objectAtIndex:[sender tag]];
     NSManagedObjectContext *context = [RRManagedObjectContext sharedManagedObjectContext];
     [context deleteObject:deleteNews];
     
@@ -112,11 +111,11 @@
     [[self tableView] reloadData];
 }
 
-- (IBAction)saveButtonAction:(id)sender
+- (IBAction)faouriteButtonAction:(id)sender
 {
-    FavouriteNewsInfo *news = [[self dataSource] objectAtIndex:[sender tag]];
+    SavedNews *news = [[self dataSource] objectAtIndex:[sender tag]];
     
-    for (SavedNews *item in [RRCoreDataSupport fetchData:SavedNewsEntityName])
+    for (FavouriteNewsInfo *item in [RRCoreDataSupport fetchData:FavouriteNewsInfoEntityName])
     {
         if ([[item newsTitle] isEqualToString:[news newsTitle]])
         {
@@ -124,12 +123,12 @@
         }
     }
     
-    SavedNews *newItem = [NSEntityDescription insertNewObjectForEntityForName:SavedNewsEntityName
-                                                       inManagedObjectContext:[RRManagedObjectContext sharedManagedObjectContext]];
+    FavouriteNewsInfo *newItem = [NSEntityDescription insertNewObjectForEntityForName:FavouriteNewsInfoEntityName
+                                                               inManagedObjectContext:[RRManagedObjectContext sharedManagedObjectContext]];
+    
     [newItem setNewsDescription:[news newsDescription]];
     [newItem setNewsTitle:[news newsTitle]];
-    [newItem setNewsContent:[NSData dataWithContentsOfURL:[NSURL URLWithString:[news newslink]]]];
-    [newItem setNewsLink:[news newslink]];
+    [newItem setNewslink:[news newsLink]];
     
     [RRCoreDataSupport saveManagedObjectContext];
 }

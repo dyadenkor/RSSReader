@@ -10,5 +10,5 @@
 
 @interface RRWebViewVC : UIViewController
 @property (nonatomic) NSString *url;
-
+@property (nonatomic) NSData *siteData;
 @end

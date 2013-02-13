@@ -12,8 +12,9 @@
 
 @interface SavedNews : NSManagedObject
 
-@property (nonatomic, retain) NSString * newsTitle;
-@property (nonatomic, retain) NSString * newsDescription;
 @property (nonatomic, retain) NSData * newsContent;
+@property (nonatomic, retain) NSString * newsDescription;
+@property (nonatomic, retain) NSString * newsTitle;
+@property (nonatomic, retain) NSString * newsLink;
 
 @end

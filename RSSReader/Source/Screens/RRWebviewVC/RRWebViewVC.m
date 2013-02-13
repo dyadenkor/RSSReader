@@ -33,7 +33,19 @@
     UIWebView *webView = [[UIWebView alloc]initWithFrame:frame];
     NSURL *url = [NSURL URLWithString:[self url]];
     NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
-    [webView loadRequest:requestObj];
+    
+    if ([self siteData])
+    {
+        [webView loadData:[self siteData]
+                 MIMEType:@"text/html"
+         textEncodingName:@"UTF-8"
+                  baseURL:nil];
+    }
+    else
+    {
+        [webView loadRequest:requestObj];
+    }
+    
     [[self view] addSubview:webView];
     
     [[self view] addSubview:[self backButton]];

@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface RRNotReadNewsVC : UIViewController
+@interface RRSavedNewsVC : UIViewController
 
 @end
