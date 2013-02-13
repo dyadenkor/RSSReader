@@ -12,9 +12,9 @@ extern NSString *const SiteContentEntityName;
 extern NSString *const SiteInfoEntityName;
 extern NSString *const FavouriteNewsInfoEntityName;
 extern NSString *const ServerBaseURL;
-
+extern NSString *const SavedNewsEntityName;
 @interface RRCoreDataSupport : NSObject
 
 + (NSError *)saveManagedObjectContext;
-
++ (NSMutableArray *)fetchData:(NSString *)entityName;
 @end

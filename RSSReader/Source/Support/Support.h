@@ -26,6 +26,8 @@
 #import "SiteContent.h"
 #import "RRCoreDataSupport.h"
 #import "RRManagedObjectContext.h"
+#import "FavouriteNewsInfo.h"
+#import "SavedNews.h"
 
 // RRTableViewCells
 #import "RRAllNewsCell.h"

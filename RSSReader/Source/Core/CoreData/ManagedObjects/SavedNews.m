@@ -1,18 +1,18 @@
 //
-//  FavouriteNewsInfo.m
+//  SavedNews.m
 //  RSSReader
 //
 //  Created by admin on 2/13/13.
 //  Copyright (c) 2013 Roman Dyadenko. All rights reserved.
 //
 
-#import "FavouriteNewsInfo.h"
+#import "SavedNews.h"
 
 
-@implementation FavouriteNewsInfo
+@implementation SavedNews
 
-@dynamic newslink;
-@dynamic newsDescription;
 @dynamic newsTitle;
+@dynamic newsDescription;
+@dynamic newsContent;
 
 @end

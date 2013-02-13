@@ -11,9 +11,83 @@
                     <view key="view" contentMode="scaleToFill" id="FN5-84-dn0">
                         <rect key="frame" x="0.0" y="20" width="320" height="499"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="99" sectionHeaderHeight="22" sectionFooterHeight="22" id="gTD-g1-ZpZ">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="499"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="gray" indentationWidth="10" reuseIdentifier="AllNewsVCCellIdentifier" rowHeight="99" id="KRl-WP-eZU" customClass="RRAllNewsCell">
+                                        <rect key="frame" x="0.0" y="22" width="320" height="99"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="98"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Title" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="RwZ-B1-7dL">
+                                                    <rect key="frame" x="10" y="5" width="278" height="38"/>
+                                                    <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="15"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </label>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Description" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hYJ-m7-ONr">
+                                                    <rect key="frame" x="10" y="44" width="278" height="51"/>
+                                                    <fontDescription key="fontDescription" name="Helvetica-LightOblique" family="Helvetica" pointSize="10"/>
+                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Dsl-lT-hwi">
+                                                    <rect key="frame" x="283" y="72" width="37" height="26"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                                    <state key="normal" title="F">
+                                                        <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <state key="highlighted">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="favouriteButtonAction:" destination="jKy-qb-4qg" eventType="touchUpInside" id="mzC-ui-lOq"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="qAS-oJ-UgA">
+                                                    <rect key="frame" x="283" y="0.0" width="37" height="36"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                                    <state key="normal" title="S">
+                                                        <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <state key="highlighted">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="saveButtonAction:" destination="jKy-qb-4qg" eventType="touchUpInside" id="CnJ-Ab-48X"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <connections>
+                                            <outlet property="description" destination="hYJ-m7-ONr" id="DC5-lg-vA4"/>
+                                            <outlet property="favouriteButton" destination="Dsl-lT-hwi" id="uap-Na-yPe"/>
+                                            <outlet property="saveButton" destination="qAS-oJ-UgA" id="veE-sJ-j9Q"/>
+                                            <outlet property="title" destination="RwZ-B1-7dL" id="QPo-AV-GfC"/>
+                                            <segue destination="Z0M-pW-HLu" kind="modal" identifier="RRFAVOURITENEWSVC_TO_RRWEBVIEWVC" id="hjl-PJ-bg3"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="FjK-nj-4Tl" id="fG1-Ll-NWg"/>
+                                    <outlet property="delegate" destination="FjK-nj-4Tl" id="zZV-7w-exm"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" systemItem="favorites" id="YXB-IK-y9K"/>
+                    <connections>
+                        <outlet property="tableView" destination="gTD-g1-ZpZ" id="Qhv-ig-PyV"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fF0-7i-OjU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -84,7 +158,7 @@
             </objects>
             <point key="canvasLocation" x="328" y="1569"/>
         </scene>
-        <!--Not Read NewsVC - Not Read-->
+        <!--Not Read NewsVC - Saved-->
         <scene sceneID="m8s-ub-eEJ">
             <objects>
                 <viewController id="nyK-a4-2iz" customClass="RRNotReadNewsVC" sceneMemberID="viewController">
@@ -93,7 +167,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Not Read" id="JfR-qc-j4F"/>
+                    <tabBarItem key="tabBarItem" title="Saved" id="JfR-qc-j4F"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yyx-Zq-MBo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -136,19 +210,19 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Title" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="vdM-TV-2Hr">
-                                                    <rect key="frame" x="10" y="5" width="283" height="38"/>
+                                                    <rect key="frame" x="10" y="5" width="278" height="38"/>
                                                     <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="15"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Description" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Wpk-OM-qoX">
-                                                    <rect key="frame" x="9" y="42" width="283" height="51"/>
+                                                    <rect key="frame" x="10" y="44" width="278" height="51"/>
                                                     <fontDescription key="fontDescription" name="Helvetica-LightOblique" family="Helvetica" pointSize="10"/>
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="xza-7S-lJ5">
-                                                    <rect key="frame" x="284" y="68" width="38" height="31"/>
+                                                    <rect key="frame" x="283" y="72" width="37" height="26"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                     <state key="normal" title="F">
@@ -162,12 +236,28 @@
                                                         <action selector="favouriteButtonAction:" destination="jKy-qb-4qg" eventType="touchUpInside" id="G8U-sM-05X"/>
                                                     </connections>
                                                 </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="5SY-CQ-nJT">
+                                                    <rect key="frame" x="283" y="0.0" width="37" height="36"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                                    <state key="normal" title="S">
+                                                        <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <state key="highlighted">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="saveButtonAction:" destination="jKy-qb-4qg" eventType="touchUpInside" id="4xF-Br-Sld"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <connections>
                                             <outlet property="description" destination="Wpk-OM-qoX" id="JQ9-cZ-6Gb"/>
                                             <outlet property="favouriteButton" destination="xza-7S-lJ5" id="doD-ou-NcU"/>
+                                            <outlet property="saveButton" destination="5SY-CQ-nJT" id="xK0-LK-CW3"/>
                                             <outlet property="title" destination="vdM-TV-2Hr" id="MQr-BF-8eL"/>
                                             <segue destination="Z0M-pW-HLu" kind="modal" identifier="RRALLNEWSVC_TO_RRWEBVIEWVC" id="voN-hg-oY3"/>
                                         </connections>
@@ -225,7 +315,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1rE-wm-g5K" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1312" y="-520"/>
+            <point key="canvasLocation" x="1656" y="312"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="JoX-HB-PUx">
@@ -255,18 +345,21 @@
             <relationships>
                 <relationship kind="outlet" name="description" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="favouriteButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="saveButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="title" candidateClass="UILabel"/>
             </relationships>
         </class>
         <class className="RRAllNewsVC" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/RRAllNewsVC.h"/>
             <relationships>
-                <relationship kind="action" name="favouriteButtonAction:"/>
                 <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
             </relationships>
         </class>
         <class className="RRFavouriteNewsVC" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/RRFavouriteNewsVC.h"/>
+            <relationships>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
         </class>
         <class className="RRNotReadNewsVC" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/RRNotReadNewsVC.h"/>
@@ -289,4 +382,7 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="hjl-PJ-bg3"/>
+    </inferredMetricsTieBreakers>
 </document>

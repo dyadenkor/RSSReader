@@ -1,5 +1,5 @@
 //
-//  FavouriteNewsInfo.h
+//  SavedNews.h
 //  RSSReader
 //
 //  Created by admin on 2/13/13.
@@ -10,10 +10,10 @@
 #import <CoreData/CoreData.h>
 
 
-@interface FavouriteNewsInfo : NSManagedObject
+@interface SavedNews : NSManagedObject
 
-@property (nonatomic, retain) NSString * newslink;
-@property (nonatomic, retain) NSString * newsDescription;
 @property (nonatomic, retain) NSString * newsTitle;
+@property (nonatomic, retain) NSString * newsDescription;
+@property (nonatomic, retain) NSData * newsContent;
 
 @end

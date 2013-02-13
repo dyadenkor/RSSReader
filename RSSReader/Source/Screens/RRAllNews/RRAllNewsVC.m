@@ -40,7 +40,7 @@
 {
     [super viewDidAppear:animated];
     
-    [[self dataSource] setArray:[self fetchData:SiteInfoEntityName]];
+    [[self dataSource] setArray:[RRCoreDataSupport fetchData:SiteInfoEntityName]];
     
     if ([[self dataSource] count])
     {
@@ -82,8 +82,6 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    SiteInfo *item = [[self dataSource] objectAtIndex:section];
-    NSLog(@"%i",[[item siteNews] count]);
     return [[[[self dataSource] objectAtIndex:section] siteNews] count];
 }
 
@@ -159,32 +157,8 @@
 
 - (void)didRecieveResponceSucces:(RKMappingResult *)mappingResult
 {
-    [[self dataSource] setArray:[self fetchData:SiteInfoEntityName]];
+    [[self dataSource] setArray:[RRCoreDataSupport fetchData:SiteInfoEntityName]];
     [[self tableView] reloadData];
-}
-
-#pragma mark - Private methods
-
-- (NSMutableArray *)fetchData:(NSString *)entityName
-{
-    NSEntityDescription *entity = [NSEntityDescription entityForName:entityName
-                                              inManagedObjectContext:[RRManagedObjectContext sharedManagedObjectContext]];
-    
-    NSFetchRequest *request = [[NSFetchRequest alloc] init];
-    [request setEntity:entity];
-    
-    NSError *error = nil;
-    
-    NSMutableArray *resultArray = [[NSMutableArray alloc] init];
-    [resultArray addObjectsFromArray:[[RRManagedObjectContext sharedManagedObjectContext] executeFetchRequest:request
-                                                                                                        error:&error]];
-  
-    if (error)
-    {
-       assert(error);
-    }
-    
-    return resultArray;
 }
 
 #pragma mark - Buttons Actions
@@ -205,11 +179,43 @@
 
 - (IBAction)favouriteButtonAction:(id)sender
 {
-    UIButton *button = (UIButton *)sender;
-    RRAllNewsCell *cell = [[button superview] superview];
+    SiteContent *news = [self detectNewsFromButton:(UIButton *)sender];
     
+    for (FavouriteNewsInfo *item in [RRCoreDataSupport fetchData:FavouriteNewsInfoEntityName])
+    {
+        if ([[item newsTitle] isEqualToString:[news newsTitle]])
+        {
+            return;
+        }
+    }
+    
+    FavouriteNewsInfo *newItem = [NSEntityDescription insertNewObjectForEntityForName:FavouriteNewsInfoEntityName
+                                                 inManagedObjectContext:[RRManagedObjectContext sharedManagedObjectContext]];
+   
+    [newItem setNewsDescription:[news newsContent]];
+    [newItem setNewsTitle:[news newsTitle]];
+    [newItem setNewslink:[news newsLink]];
+    
+    [RRCoreDataSupport saveManagedObjectContext];
+}
+
+- (IBAction)saveButtonAction:(id)sender
+{
+    
+}
+
+#pragma mark - Private methods
+
+- (SiteContent *)detectNewsFromButton:(UIButton *)theTouchButton
+{
+    RRAllNewsCell *cell = (RRAllNewsCell *)[[theTouchButton superview] superview];
     NSIndexPath *indexPath = [[self tableView] indexPathForCell:cell];
     
+    SiteInfo *site = [[self dataSource] objectAtIndex:[indexPath section]];
+    NSMutableArray *arrayFromNSSet = [NSMutableArray arrayWithArray:[[site siteNews] allObjects]];
+    SiteContent *news = [arrayFromNSSet objectAtIndex:[indexPath row]];
+    
+    return news;
 }
 
 @end

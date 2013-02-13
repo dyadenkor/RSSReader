@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1810" systemVersion="11E53" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="FavouriteNewsInfo" representedClassName="FavouriteNewsInfo" syncable="YES">
+        <attribute name="newsDescription" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="newslink" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="newsTitle" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="SavedNews" representedClassName="SavedNews" syncable="YES">
+        <attribute name="newsContent" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="newsDescription" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="newsTitle" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <entity name="SiteContent" representedClassName="SiteContent" syncable="YES">
         <attribute name="newsContent" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="newsLink" optional="YES" attributeType="String" syncable="YES"/>
@@ -12,7 +22,9 @@
         <relationship name="siteNews" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SiteContent" inverseName="siteInfo" inverseEntity="SiteContent" syncable="YES"/>
     </entity>
     <elements>
+        <element name="FavouriteNewsInfo" positionX="52" positionY="-180" width="128" height="90"/>
         <element name="SiteContent" positionX="54" positionY="-45" width="128" height="105"/>
-        <element name="SiteInfo" positionX="-126" positionY="-84" width="128" height="90"/>
+        <element name="SiteInfo" positionX="-126" positionY="-45" width="128" height="90"/>
+        <element name="SavedNews" positionX="-126" positionY="-180" width="128" height="90"/>
     </elements>
 </model>

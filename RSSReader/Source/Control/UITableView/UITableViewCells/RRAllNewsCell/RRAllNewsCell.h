@@ -13,5 +13,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *title;
 @property (weak, nonatomic) IBOutlet UILabel *description;
 @property (weak, nonatomic) IBOutlet UIButton *favouriteButton;
+@property (weak, nonatomic) IBOutlet UIButton *saveButton;
 
 @end

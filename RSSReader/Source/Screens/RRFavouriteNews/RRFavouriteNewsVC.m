@@ -9,6 +9,8 @@
 #import "RRFavouriteNewsVC.h"
 
 @interface RRFavouriteNewsVC ()
+@property (nonatomic) NSMutableArray *dataSource;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
 
@@ -26,13 +28,69 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.dataSource = [[NSMutableArray alloc] init];
 	// Do any additional setup after loading the view.
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [[self dataSource] setArray:[RRCoreDataSupport fetchData:FavouriteNewsInfoEntityName]];
+
+    if ([[self dataSource] count])
+    {
+        [[self tableView] reloadData];
+    }
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)viewDidUnload
+{
+    [self setTableView:nil];
+    [super viewDidUnload];
+}
+
+#pragma mark - UITableview
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return [[self dataSource] count];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)theTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    RRAllNewsCell *cell = [theTableView dequeueReusableCellWithIdentifier:AllNewsVCCellIdentifier];
+    
+    FavouriteNewsInfo *news = [[self dataSource] objectAtIndex:[indexPath row]];
+    
+    [[cell description] setText:[news newsDescription]];
+    [[cell title] setText:[news newsTitle]];
+    
+    return cell;
+}
+
+#pragma mark - UIStoryboardSegue
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([[segue identifier] isEqualToString:@"RRFAVOURITENEWSVC_TO_RRWEBVIEWVC"])
+    {
+        NSIndexPath *indexPath = [[self tableView] indexPathForCell:sender];
+        FavouriteNewsInfo *news = [[self dataSource] objectAtIndex:[indexPath row]];
+        
+        RRWebViewVC *vc = [segue destinationViewController];
+        [vc setUrl:[news newslink]];
+    }
 }
 
 @end
