@@ -10,6 +10,7 @@
 
 // cells identifier
 extern NSString *const SettingCellIdentyfier;
+extern NSString *const FavouriteNewsVCCellIdentifier;
 extern NSString *const AllNewsVCCellIdentifier;
 
 @interface RRTableViewCellSupport : NSObject

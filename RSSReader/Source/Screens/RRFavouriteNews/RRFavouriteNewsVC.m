@@ -69,12 +69,14 @@
 
 - (UITableViewCell *)tableView:(UITableView *)theTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    RRAllNewsCell *cell = [theTableView dequeueReusableCellWithIdentifier:AllNewsVCCellIdentifier];
+    RRAllNewsCell *cell = [theTableView dequeueReusableCellWithIdentifier:FavouriteNewsVCCellIdentifier];
     
     FavouriteNewsInfo *news = [[self dataSource] objectAtIndex:[indexPath row]];
     
     [[cell description] setText:[news newsDescription]];
     [[cell title] setText:[news newsTitle]];
+    
+    [[cell favouriteButton] setTag:[indexPath row]];
     
     return cell;
 }
@@ -91,6 +93,20 @@
         RRWebViewVC *vc = [segue destinationViewController];
         [vc setUrl:[news newslink]];
     }
+}
+
+#pragma mark - Buttons Actions
+
+- (IBAction)deleteButtonAction:(id)sender
+{
+    FavouriteNewsInfo *deleteNews = [[self dataSource] objectAtIndex:[sender tag]];
+    NSManagedObjectContext *context = [RRManagedObjectContext sharedManagedObjectContext];
+    [context deleteObject:deleteNews];
+    
+    [RRCoreDataSupport saveManagedObjectContext];
+    
+    [[self dataSource] removeObjectAtIndex:[sender tag]];
+    [[self tableView] reloadData];
 }
 
 @end

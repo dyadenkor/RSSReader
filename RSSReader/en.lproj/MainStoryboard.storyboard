@@ -15,7 +15,7 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="99" sectionHeaderHeight="22" sectionFooterHeight="22" id="gTD-g1-ZpZ">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="499"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="gray" indentationWidth="10" reuseIdentifier="AllNewsVCCellIdentifier" rowHeight="99" id="KRl-WP-eZU" customClass="RRAllNewsCell">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="gray" indentationWidth="10" reuseIdentifier="FavouriteNewsVCCellIdentifier" rowHeight="99" id="KRl-WP-eZU" customClass="RRAllNewsCell">
                                         <rect key="frame" x="0.0" y="22" width="320" height="99"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -35,27 +35,27 @@
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Dsl-lT-hwi">
-                                                    <rect key="frame" x="283" y="72" width="37" height="26"/>
+                                                    <rect key="frame" x="283" y="65" width="37" height="33"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                                    <state key="normal" title="F">
-                                                        <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="10"/>
+                                                    <state key="normal" title="Delete">
+                                                        <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                     <state key="highlighted">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                     <connections>
+                                                        <action selector="deleteButtonAction:" destination="FjK-nj-4Tl" eventType="touchUpInside" id="PXc-IH-1eP"/>
                                                         <action selector="favouriteButtonAction:" destination="jKy-qb-4qg" eventType="touchUpInside" id="mzC-ui-lOq"/>
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="qAS-oJ-UgA">
                                                     <rect key="frame" x="283" y="0.0" width="37" height="36"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                                    <state key="normal" title="S">
-                                                        <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="10"/>
+                                                    <state key="normal" title="Save">
+                                                        <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                     <state key="highlighted">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -138,7 +138,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gDb-Tj-If9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="805" y="1569"/>
+            <point key="canvasLocation" x="945" y="1569"/>
         </scene>
         <!--Navigation Controller - Settings-->
         <scene sceneID="pGN-Rk-oBo">
@@ -173,24 +173,6 @@
             </objects>
             <point key="canvasLocation" x="328" y="196"/>
         </scene>
-        <!--Navigation Controller - All-->
-        <scene sceneID="NnY-1a-hdT">
-            <objects>
-                <navigationController title="All" definesPresentationContext="YES" navigationBarHidden="YES" id="njy-0c-nFo" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="All" id="hor-SP-Rec"/>
-                    <nil key="simulatedTopBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="xXI-m6-AEM">
-                        <rect key="frame" x="0.0" y="-44" width="0.0" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="jKy-qb-4qg" kind="relationship" relationship="rootViewController" id="NWO-2k-w1g"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="NKP-rU-oaa" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="328" y="-520"/>
-        </scene>
         <!--All NewsVC - All-->
         <scene sceneID="Kmc-xH-nFX">
             <objects>
@@ -222,11 +204,11 @@
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="xza-7S-lJ5">
-                                                    <rect key="frame" x="283" y="72" width="37" height="26"/>
+                                                    <rect key="frame" x="283" y="67" width="37" height="31"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                                    <state key="normal" title="F">
-                                                        <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="10"/>
+                                                    <state key="normal" title="Fave">
+                                                        <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                     <state key="highlighted">
@@ -239,9 +221,9 @@
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="5SY-CQ-nJT">
                                                     <rect key="frame" x="283" y="0.0" width="37" height="36"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                                    <state key="normal" title="S">
-                                                        <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="10"/>
+                                                    <state key="normal" title="Save">
+                                                        <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                     <state key="highlighted">
@@ -280,7 +262,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d3u-od-5mU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="850" y="-520"/>
+            <point key="canvasLocation" x="328" y="-484"/>
         </scene>
         <!--Web ViewVC-->
         <scene sceneID="KG9-Im-uxe">
@@ -315,7 +297,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1rE-wm-g5K" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1656" y="312"/>
+            <point key="canvasLocation" x="945" y="208"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="JoX-HB-PUx">
@@ -328,9 +310,9 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="njy-0c-nFo" kind="relationship" relationship="viewControllers" id="J3R-px-FBr"/>
-                        <segue destination="nyK-a4-2iz" kind="relationship" relationship="viewControllers" id="SJ6-TH-9Ec"/>
+                        <segue destination="jKy-qb-4qg" kind="relationship" relationship="viewControllers" id="tgv-Jm-qM5"/>
                         <segue destination="FjK-nj-4Tl" kind="relationship" relationship="viewControllers" id="FmD-lO-knP"/>
+                        <segue destination="nyK-a4-2iz" kind="relationship" relationship="viewControllers" id="SJ6-TH-9Ec"/>
                         <segue destination="IGi-dO-TNc" kind="relationship" relationship="viewControllers" id="Ejc-Dh-cB1"/>
                     </connections>
                 </tabBarController>
@@ -339,44 +321,6 @@
             <point key="canvasLocation" x="-416" y="583"/>
         </scene>
     </scenes>
-    <classes>
-        <class className="RRAllNewsCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/RRAllNewsCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="description" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="favouriteButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="saveButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="title" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="RRAllNewsVC" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/RRAllNewsVC.h"/>
-            <relationships>
-                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="RRFavouriteNewsVC" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/RRFavouriteNewsVC.h"/>
-            <relationships>
-                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="RRNotReadNewsVC" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/RRNotReadNewsVC.h"/>
-        </class>
-        <class className="RRSettingsVC" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/RRSettingsVC.h"/>
-            <relationships>
-                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="RRWebViewVC" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/RRWebViewVC.h"/>
-            <relationships>
-                <relationship kind="outlet" name="backButton" candidateClass="UIButton"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

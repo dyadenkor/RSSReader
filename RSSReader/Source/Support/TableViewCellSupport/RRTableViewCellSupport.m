@@ -9,6 +9,7 @@
 #import "RRTableViewCellSupport.h"
 
 NSString * const AllNewsVCCellIdentifier = @"AllNewsVCCellIdentifier";
+NSString * const FavouriteNewsVCCellIdentifier = @"FavouriteNewsVCCellIdentifier";
 NSString * const SettingCellIdentyfier = @"SettingCellIdentyfier";
 
 @implementation RRTableViewCellSupport
