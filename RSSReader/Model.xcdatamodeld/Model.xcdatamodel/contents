@@ -8,6 +8,7 @@
     <entity name="SavedNews" representedClassName="SavedNews" syncable="YES">
         <attribute name="newsContent" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="newsDescription" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="newsLink" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="newsTitle" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="SiteContent" representedClassName="SiteContent" syncable="YES">
@@ -23,8 +24,8 @@
     </entity>
     <elements>
         <element name="FavouriteNewsInfo" positionX="52" positionY="-180" width="128" height="90"/>
+        <element name="SavedNews" positionX="-126" positionY="-180" width="128" height="105"/>
         <element name="SiteContent" positionX="54" positionY="-45" width="128" height="105"/>
         <element name="SiteInfo" positionX="-126" positionY="-45" width="128" height="90"/>
-        <element name="SavedNews" positionX="-126" positionY="-180" width="128" height="90"/>
     </elements>
 </model>

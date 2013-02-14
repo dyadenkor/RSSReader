@@ -20,11 +20,9 @@ NSString * const SavedNewsEntityName = @"SavedNews";
 {
     NSError *error = nil;
     
-    if ([[RRManagedObjectContext sharedManagedObjectContext] save:&error])
+    if (![[RRManagedObjectContext sharedManagedObjectContext] save:&error])
     {
         NSLog(@"error = %@", [error description]);
-        
-        return error;
     }
     
     return error;
@@ -51,6 +49,5 @@ NSString * const SavedNewsEntityName = @"SavedNews";
     
     return resultArray;
 }
-
 
 @end
