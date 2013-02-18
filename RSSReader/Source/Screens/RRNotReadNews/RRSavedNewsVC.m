@@ -65,7 +65,7 @@
     RRAllNewsCell *cell = [theTableView dequeueReusableCellWithIdentifier:SavedNewsVCCellIdentifier];
     
     SavedNews *news = [[self dataSource] objectAtIndex:[indexPath row]];
-    
+
     [[cell description] setText:[news newsDescription]];
     [[cell title] setText:[news newsTitle]];
     

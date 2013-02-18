@@ -14,7 +14,7 @@
 - (void)sendData:(NSString *)siteUrl
 {
     // get data from server
-    NSString *pathToResource = [NSString stringWithFormat:@"/ajax/services/feed/load?v=1.0&q=%@&num=-1&output=json", siteUrl];
+    NSString *pathToResource = [NSString stringWithFormat:@"/ajax/services/feed/load?v=1.0&q=%@&num=3&output=json", siteUrl];
     
     [[RKObjectManager sharedManager] getObjectsAtPath:pathToResource
                                            parameters:nil

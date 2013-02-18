@@ -12,7 +12,11 @@
         <attribute name="newsTitle" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="SiteContent" representedClassName="SiteContent" syncable="YES">
+        <attribute name="isFavourite" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="isRead" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="isSaved" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="newsContent" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="newsDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="newsLink" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="newsTitle" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="siteInfo" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="SiteInfo" inverseName="siteNews" inverseEntity="SiteInfo" syncable="YES"/>
@@ -23,9 +27,9 @@
         <relationship name="siteNews" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SiteContent" inverseName="siteInfo" inverseEntity="SiteContent" syncable="YES"/>
     </entity>
     <elements>
-        <element name="FavouriteNewsInfo" positionX="52" positionY="-180" width="128" height="90"/>
-        <element name="SavedNews" positionX="-126" positionY="-180" width="128" height="105"/>
-        <element name="SiteContent" positionX="54" positionY="-45" width="128" height="105"/>
+        <element name="FavouriteNewsInfo" positionX="52" positionY="-216" width="128" height="90"/>
+        <element name="SavedNews" positionX="-126" positionY="-216" width="128" height="105"/>
+        <element name="SiteContent" positionX="54" positionY="-45" width="128" height="165"/>
         <element name="SiteInfo" positionX="-126" positionY="-45" width="128" height="90"/>
     </elements>
 </model>

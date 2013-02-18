@@ -14,6 +14,8 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
+        
+        [[self notReadButton] addSubview:[self notReadImageView]];
         // Initialization code
     }
     return self;

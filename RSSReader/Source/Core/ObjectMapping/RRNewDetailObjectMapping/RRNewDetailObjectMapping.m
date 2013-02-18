@@ -14,12 +14,13 @@
 {
      RKEntityMapping* newDetail = [RKEntityMapping mappingForEntityForName:SiteContentEntityName
                                                       inManagedObjectStore:[[RKObjectManager sharedManager] managedObjectStore]];
-    //newDetail.identificationAttributes = @[ @"newsTitle" ];
+    
     [newDetail addAttributeMappingsFromDictionary:
      @{
      @"title": @"newsTitle",
      @"link": @"newsLink",
-     @"content": @"newsContent"
+     @"content": @"newsContent",
+     @"publishedDate": @"newsDate"
      }];
     
     return newDetail;

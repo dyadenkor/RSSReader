@@ -10,6 +10,7 @@
 
 @implementation RRAllNewsDataSourceItem
 @synthesize siteName;
+@synthesize siteURL;
 @synthesize siteNews;
 
 - (id)init

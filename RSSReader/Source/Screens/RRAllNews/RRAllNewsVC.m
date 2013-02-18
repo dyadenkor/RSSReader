@@ -11,6 +11,7 @@
 @interface RRAllNewsVC ()
 
 @property (nonatomic, strong) NSMutableArray *dataSource;
+@property (nonatomic, strong) NSMutableArray *sites;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic) RRServerGateway *serverGateWay;
 
@@ -24,13 +25,18 @@
     
     self.dataSource = [[NSMutableArray alloc] init];
     self.serverGateWay = [[RRServerGateway alloc] init];
+    self.sites = [[NSMutableArray alloc] init];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
     
-    [[self dataSource] setArray:[RRCoreDataSupport fetchData:SiteInfoEntityName]];
+    [[self sites] setArray:[RRCoreDataSupport fetchData:SiteInfoEntityName]];
+    
+    [[self dataSource] removeAllObjects];
+    
+    [self initDataSource];
     
     if ([[self dataSource] count])
     {
@@ -67,7 +73,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return [[self dataSource] count];;
+    return [[self dataSource] count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -79,9 +85,24 @@
 {
     RRAllNewsCell *cell = [theTableView dequeueReusableCellWithIdentifier:AllNewsVCCellIdentifier];
     
-    SiteInfo *site = [[self dataSource] objectAtIndex:[indexPath section]];
-    NSMutableArray *arrayFromNSSet = [NSMutableArray arrayWithArray:[[site siteNews] allObjects]];
-    SiteContent *news = [arrayFromNSSet objectAtIndex:[indexPath row]];
+    RRAllNewsDataSourceItem *item = [[self dataSource] objectAtIndex:[indexPath section]];
+    SiteContent *news = [[item siteNews] objectAtIndex:[indexPath row]];
+    
+    if ([news isRead])
+    {
+        [[cell notReadImageView] setHidden:YES];
+        [[cell notReadButton] setHidden:YES];
+    }
+    
+    if ([news isFavourite])
+    {
+        [[cell favouriteButton] setHidden:YES];
+    }
+    
+    if ([news isSaved])
+    {
+        [[cell saveButton] setHidden:YES];
+    }
     
     [[cell description] setText:[news newsContent]];
     [[cell title] setText:[news newsTitle]];
@@ -96,7 +117,7 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    SiteInfo *item = [[self dataSource] objectAtIndex:section];
+    RRAllNewsDataSourceItem *item = [[self dataSource] objectAtIndex:section];
     
     UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [[self view] frame].size.width , 30.0)];
     [headerView setBackgroundColor:[UIColor colorWithRed:163/255 green:169/255 blue:171/255 alpha:1]];
@@ -113,7 +134,7 @@
     [headerView addSubview:refreshButton];
     
     UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, [[self view] frame].size.width  - 50, 30.0)];
-    [titleLabel setText:[item title]];
+    [titleLabel setText:[item siteName]];
     [titleLabel setTextColor:[UIColor whiteColor]];
     [titleLabel setBackgroundColor:[UIColor clearColor]];
     
@@ -129,9 +150,10 @@
     if ([[segue identifier] isEqualToString:@"RRALLNEWSVC_TO_RRWEBVIEWVC"])
     {
         NSIndexPath *indexPath = [[self tableView] indexPathForCell:sender];
-        SiteInfo *site = [[self dataSource] objectAtIndex:[indexPath section]];
-        NSMutableArray *arrayFromNSSet = [NSMutableArray arrayWithArray:[[site siteNews] allObjects]];
-        SiteContent *news = [arrayFromNSSet objectAtIndex:[indexPath row]];
+        RRAllNewsDataSourceItem *site = [[self dataSource] objectAtIndex:[indexPath section]];
+        SiteContent *news = [[site siteNews] objectAtIndex:[indexPath row]];
+        [news setIsRead:[NSNumber numberWithBool:YES]];
+        [RRCoreDataSupport saveManagedObjectContext];
         
         RRWebViewVC *vc = [segue destinationViewController];
         [vc setUrl:[news newsLink]];
@@ -147,17 +169,18 @@
 
 - (void)didRecieveResponceSucces:(RKMappingResult *)mappingResult
 {
-    [[self dataSource] setArray:[RRCoreDataSupport fetchData:SiteInfoEntityName]];
-    [[self tableView] reloadData];
+    [[self sites] setArray:[RRCoreDataSupport fetchData:SiteInfoEntityName]];
+    [[self dataSource] removeAllObjects];
+    [self initDataSource];
 }
 
 #pragma mark - Buttons Actions
 
 - (void)refreshButtonPressed:(id)sender
 {
-    NSString *url = [[[self dataSource] objectAtIndex:[sender tag]] siteUrl];
+    NSString *url = [[[self dataSource] objectAtIndex:[sender tag]] siteURL];
     
-    SiteInfo *deleteSite = [[self dataSource] objectAtIndex:[sender tag]];
+    SiteInfo *deleteSite = [[self sites] objectAtIndex:[sender tag]];
     NSManagedObjectContext *context = [RRManagedObjectContext sharedManagedObjectContext];
     [context deleteObject:deleteSite];
     
@@ -169,15 +192,10 @@
 
 - (IBAction)favouriteButtonAction:(id)sender
 {
-    SiteContent *news = [self detectNewsFromButton:(UIButton *)sender];
-    
-    for (FavouriteNewsInfo *item in [RRCoreDataSupport fetchData:FavouriteNewsInfoEntityName])
-    {
-        if ([[item newsTitle] isEqualToString:[news newsTitle]])
-        {
-            return;
-        }
-    }
+    NSIndexPath *indexPath = [self detectIndexPathFromButton:sender];
+    SiteContent *news = [self detectNewsFromIndexPath:indexPath];
+    [news setIsFavourite:[NSNumber numberWithBool:YES]];
+    [news setIsRead:[NSNumber numberWithBool:YES]];
     
     FavouriteNewsInfo *newItem = [NSEntityDescription insertNewObjectForEntityForName:FavouriteNewsInfoEntityName
                                                  inManagedObjectContext:[RRManagedObjectContext sharedManagedObjectContext]];
@@ -187,19 +205,16 @@
     [newItem setNewslink:[news newsLink]];
     
     [RRCoreDataSupport saveManagedObjectContext];
+    
+    [[self tableView] reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:YES];
 }
 
 - (IBAction)saveButtonAction:(id)sender
 {
-    SiteContent *news = [self detectNewsFromButton:(UIButton *)sender];
-    
-    for (SavedNews *item in [RRCoreDataSupport fetchData:SavedNewsEntityName])
-    {
-        if ([[item newsTitle] isEqualToString:[news newsTitle]])
-        {
-            return;
-        }
-    }
+    NSIndexPath *indexPath = [self detectIndexPathFromButton:sender];
+    SiteContent *news = [self detectNewsFromIndexPath:indexPath];
+    [news setIsSaved:[NSNumber numberWithBool:YES]];
+    [news setIsRead:[NSNumber numberWithBool:YES]];
     
     SavedNews *newItem = [NSEntityDescription insertNewObjectForEntityForName:SavedNewsEntityName
                                                        inManagedObjectContext:[RRManagedObjectContext sharedManagedObjectContext]];
@@ -209,21 +224,61 @@
     [newItem setNewsLink:[news newsLink]];
     
     [RRCoreDataSupport saveManagedObjectContext];
-   
+    
+    [[self tableView] reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:YES];
+}
+
+- (IBAction)notReadButtonAction:(id)sender
+{
+    NSIndexPath *indexPath = [self detectIndexPathFromButton:sender];
+    SiteContent *item = [self detectNewsFromIndexPath:indexPath];
+    [item setIsRead:[NSNumber numberWithBool:YES]];
+    
+    [RRCoreDataSupport saveManagedObjectContext];
+    
+    [[self tableView] reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:YES];
 }
 
 #pragma mark - Private methods
 
-- (SiteContent *)detectNewsFromButton:(UIButton *)theTouchButton
+- (NSIndexPath *)detectIndexPathFromButton:(UIButton *)theTouchButton
 {
     RRAllNewsCell *cell = (RRAllNewsCell *)[[theTouchButton superview] superview];
     NSIndexPath *indexPath = [[self tableView] indexPathForCell:cell];
     
-    SiteInfo *site = [[self dataSource] objectAtIndex:[indexPath section]];
-    NSMutableArray *arrayFromNSSet = [NSMutableArray arrayWithArray:[[site siteNews] allObjects]];
-    SiteContent *news = [arrayFromNSSet objectAtIndex:[indexPath row]];
+    return indexPath;
+}
+
+- (SiteContent *)detectNewsFromIndexPath:(NSIndexPath *)indexPath
+{
+    RRAllNewsDataSourceItem *site = [[self dataSource] objectAtIndex:[indexPath section]];
+    SiteContent *news = [[site siteNews] objectAtIndex:[indexPath row]];
     
     return news;
+}
+
+- (void)initDataSource
+{
+    for (SiteInfo *item in [self sites])
+    {
+        RRAllNewsDataSourceItem *dataSourceItem = [[RRAllNewsDataSourceItem alloc] init];
+        [dataSourceItem setSiteName:[item title]];
+        [dataSourceItem setSiteURL:[item siteUrl]];
+        [dataSourceItem setSiteNews:(NSMutableArray *)[self sortNews:item]];
+        
+        [[self dataSource] addObject:dataSourceItem];
+    }
+}
+
+- (NSArray *)sortNews:(SiteInfo *)site
+{
+    NSArray *sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"newsDate" ascending:YES]];
+    
+    NSArray *sortArray = [[NSArray alloc] init];
+    sortArray = [[site siteNews] sortedArrayUsingDescriptors:sortDescriptors];
+    sortArray = [[sortArray reverseObjectEnumerator] allObjects];
+    
+    return sortArray;
 }
 
 @end

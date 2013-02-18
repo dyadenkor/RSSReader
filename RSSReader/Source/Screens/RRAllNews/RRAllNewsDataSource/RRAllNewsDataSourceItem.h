@@ -11,6 +11,7 @@
 @interface RRAllNewsDataSourceItem : NSObject
 
 @property (nonatomic, strong) NSString *siteName;
+@property (nonatomic, strong) NSString *siteURL;
 @property (nonatomic, strong) NSMutableArray *siteNews;
 
 @end

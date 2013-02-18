@@ -53,6 +53,7 @@
     
     // object mappings
     RKObjectMapping *objectMapping = [RRRootResponseObjectMapping objectMapping];
+    [RKObjectMapping addDefaultDateFormatterForString:@"E, d M y H:m:s Z" inTimeZone:nil];
     
     // Register our mappings with the provider
     RKResponseDescriptor *responseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:objectMapping
@@ -62,7 +63,7 @@
     [objectManager addResponseDescriptor:responseDescriptor];
     
     // Complete Core Data stack initialization
-    
+
     [managedObjectStore createPersistentStoreCoordinator];
     
     NSString *storePath = [RKApplicationDataDirectory() stringByAppendingPathComponent:@"Model.sqlite"];

@@ -2,7 +2,7 @@
 //  SavedNews.h
 //  RSSReader
 //
-//  Created by admin on 2/13/13.
+//  Created by admin on 2/18/13.
 //  Copyright (c) 2013 Roman Dyadenko. All rights reserved.
 //
 
@@ -14,7 +14,7 @@
 
 @property (nonatomic, retain) NSData * newsContent;
 @property (nonatomic, retain) NSString * newsDescription;
-@property (nonatomic, retain) NSString * newsTitle;
 @property (nonatomic, retain) NSString * newsLink;
+@property (nonatomic, retain) NSString * newsTitle;
 
 @end

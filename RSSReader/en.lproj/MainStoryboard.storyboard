@@ -310,12 +310,33 @@
                                                         <action selector="saveButtonAction:" destination="jKy-qb-4qg" eventType="touchUpInside" id="4xF-Br-Sld"/>
                                                     </connections>
                                                 </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" id="ozU-XJ-fvF">
+                                                    <rect key="frame" x="283" y="36" width="37" height="26"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" size="button"/>
+                                                    <state key="normal">
+                                                        <color key="titleColor" red="0.19607843137254902" green="0.30980392156862746" blue="0.52156862745098043" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <state key="highlighted">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="notReadButtonAction:" destination="jKy-qb-4qg" eventType="touchUpInside" id="4ah-mU-bK3"/>
+                                                    </connections>
+                                                </button>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="path3794.png" id="0Ur-zC-9da">
+                                                    <rect key="frame" x="295" y="41" width="16" height="15"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <connections>
                                             <outlet property="description" destination="Wpk-OM-qoX" id="JQ9-cZ-6Gb"/>
                                             <outlet property="favouriteButton" destination="xza-7S-lJ5" id="doD-ou-NcU"/>
+                                            <outlet property="notReadButton" destination="ozU-XJ-fvF" id="tFR-sj-nId"/>
+                                            <outlet property="notReadImageView" destination="0Ur-zC-9da" id="vY2-Xr-eQm"/>
                                             <outlet property="saveButton" destination="5SY-CQ-nJT" id="xK0-LK-CW3"/>
                                             <outlet property="title" destination="vdM-TV-2Hr" id="MQr-BF-8eL"/>
                                             <segue destination="Z0M-pW-HLu" kind="modal" identifier="RRALLNEWSVC_TO_RRWEBVIEWVC" id="voN-hg-oY3"/>
@@ -398,55 +419,15 @@
             <point key="canvasLocation" x="-416" y="583"/>
         </scene>
     </scenes>
-    <classes>
-        <class className="RRAllNewsCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/RRAllNewsCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="description" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="favouriteButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="saveButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="title" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="RRAllNewsVC" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/RRAllNewsVC.h"/>
-            <relationships>
-                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="RRFavouriteNewsVC" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/RRFavouriteNewsVC.h"/>
-            <relationships>
-                <relationship kind="action" name="deleteButtonAction:"/>
-                <relationship kind="action" name="saveButtonAction:"/>
-                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="RRSavedNewsVC" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/RRSavedNewsVC.h"/>
-            <relationships>
-                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="RRSettingsVC" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/RRSettingsVC.h"/>
-            <relationships>
-                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="RRWebViewVC" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/RRWebViewVC.h"/>
-            <relationships>
-                <relationship kind="outlet" name="backButton" candidateClass="UIButton"/>
-            </relationships>
-        </class>
-    </classes>
+    <resources>
+        <image name="path3794.png" width="233" height="234"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="lLs-w8-7jo"/>
+        <segue reference="voN-hg-oY3"/>
     </inferredMetricsTieBreakers>
 </document>
