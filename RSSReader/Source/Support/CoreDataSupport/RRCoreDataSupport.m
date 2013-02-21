@@ -36,11 +36,6 @@ NSString * const SavedNewsEntityName = @"SavedNews";
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     [request setEntity:entity];
     
-    if ([entityName isEqualToString:SiteContentEntityName])
-    {
-        [request setSortDescriptors:[NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"newsDate" ascending:YES]]];
-    }
-    
     NSError *error = nil;
     
     NSMutableArray *resultArray = [[NSMutableArray alloc] init];

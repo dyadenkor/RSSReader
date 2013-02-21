@@ -37,6 +37,7 @@
 		8434DA8C16D37C890087BBFB /* SavedNews.m in Sources */ = {isa = PBXBuildFile; fileRef = 8434DA8B16D37C890087BBFB /* SavedNews.m */; };
 		8434DA8F16D37C890087BBFB /* FavouriteNewsInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 8434DA8E16D37C890087BBFB /* FavouriteNewsInfo.m */; };
 		844D13DE16AEA3CD00FAF33C /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 844D13DC16AEA3CD00FAF33C /* Model.xcdatamodeld */; };
+		8453907716D6352C000B49A8 /* RRSiteSettingsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8453907616D6352C000B49A8 /* RRSiteSettingsVC.m */; };
 		8457C9A116AD87EE0094C164 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8457C9A016AD87EE0094C164 /* CFNetwork.framework */; };
 		8457C9A316AD880A0094C164 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8457C9A216AD880A0094C164 /* Security.framework */; };
 		847D906216AED48B0089B055 /* RRManagedObjectContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 847D906116AED48B0089B055 /* RRManagedObjectContext.m */; };
@@ -141,6 +142,8 @@
 		8434DA8D16D37C890087BBFB /* FavouriteNewsInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavouriteNewsInfo.h; sourceTree = "<group>"; };
 		8434DA8E16D37C890087BBFB /* FavouriteNewsInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavouriteNewsInfo.m; sourceTree = "<group>"; };
 		844D13DD16AEA3CD00FAF33C /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		8453907516D6352C000B49A8 /* RRSiteSettingsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRSiteSettingsVC.h; sourceTree = "<group>"; };
+		8453907616D6352C000B49A8 /* RRSiteSettingsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RRSiteSettingsVC.m; sourceTree = "<group>"; };
 		8457C9A016AD87EE0094C164 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		8457C9A216AD880A0094C164 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		847D906016AED48B0089B055 /* RRManagedObjectContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRManagedObjectContext.h; sourceTree = "<group>"; };
@@ -426,6 +429,7 @@
 		841975D216A96C6000DBB9E7 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				8453907416D6338A000B49A8 /* RRSiteSettingsVC */,
 				84DEADE616CA4CF100EDBCF1 /* RRWebviewVC */,
 				841975D316A96C6000DBB9E7 /* RRAllNews */,
 				841975D916A96C6000DBB9E7 /* RRFavouriteNews */,
@@ -499,6 +503,15 @@
 				7F9EC6E816B1E9E700F6D45C /* ManagedObjects */,
 			);
 			path = CoreData;
+			sourceTree = "<group>";
+		};
+		8453907416D6338A000B49A8 /* RRSiteSettingsVC */ = {
+			isa = PBXGroup;
+			children = (
+				8453907516D6352C000B49A8 /* RRSiteSettingsVC.h */,
+				8453907616D6352C000B49A8 /* RRSiteSettingsVC.m */,
+			);
+			path = RRSiteSettingsVC;
 			sourceTree = "<group>";
 		};
 		847D905F16AED4600089B055 /* ManagedObjectContextSingleTone */ = {
@@ -649,6 +662,7 @@
 				8434DA8916D37C890087BBFB /* SiteInfo.m in Sources */,
 				8434DA8C16D37C890087BBFB /* SavedNews.m in Sources */,
 				8434DA8F16D37C890087BBFB /* FavouriteNewsInfo.m in Sources */,
+				8453907716D6352C000B49A8 /* RRSiteSettingsVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -129,6 +129,19 @@
     [[self tableView] reloadData];
 }
 
+#pragma mark - UIStoryboardSegue
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([[segue identifier] isEqualToString:@"RRSETTINGSVC_TO_RRSITESETTINGSVC"])
+    {
+        NSIndexPath *indexPath = [[self tableView] indexPathForCell:sender];
+       
+        RRSiteSettingsVC *vc = [segue destinationViewController];
+        [vc setSitePosition:[NSNumber numberWithInt:[indexPath row]]];
+    }
+}
+
 #pragma mark - Private methods
 
 - (void)fetchData

@@ -12,6 +12,7 @@ NSString * const AllNewsVCCellIdentifier = @"AllNewsVCCellIdentifier";
 NSString * const FavouriteNewsVCCellIdentifier = @"FavouriteNewsVCCellIdentifier";
 NSString * const SavedNewsVCCellIdentifier = @"SavedNewsVCCellIdentifier";
 NSString * const SettingCellIdentyfier = @"SettingCellIdentyfier";
+NSString * const SiteSettingCellIdentyfier = @"SiteSettingCellIdentyfier";
 
 @implementation RRTableViewCellSupport
 
