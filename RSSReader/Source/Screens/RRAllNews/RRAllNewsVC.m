@@ -10,8 +10,8 @@
 
 @interface RRAllNewsVC ()
 
-@property (nonatomic, strong) NSMutableArray *dataSource;
-@property (nonatomic, strong) NSMutableArray *sites;
+@property (nonatomic) NSMutableArray *dataSource;
+@property (nonatomic) NSMutableArray *sites;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic) RRServerGateway *serverGateWay;
 
@@ -170,15 +170,18 @@
 - (void)didRecieveResponceSucces:(RKMappingResult *)mappingResult
 {
     [[self sites] setArray:[RRCoreDataSupport fetchData:SiteInfoEntityName]];
+      
     [[self dataSource] removeAllObjects];
     [self initDataSource];
+    
+    [[self tableView] reloadData];
 }
 
 #pragma mark - Buttons Actions
 
 - (void)refreshButtonPressed:(id)sender
 {
-    NSString *url = [[[self dataSource] objectAtIndex:[sender tag]] siteURL];
+   /* NSString *url = [[[self dataSource] objectAtIndex:[sender tag]] siteURL];
     
     SiteInfo *deleteSite = [[self sites] objectAtIndex:[sender tag]];
     NSManagedObjectContext *context = [RRManagedObjectContext sharedManagedObjectContext];
@@ -187,7 +190,7 @@
     [RRCoreDataSupport saveManagedObjectContext];
     
     [[self serverGateWay] sendData:url];
-    [[self serverGateWay] setDelegate:self];
+    [[self serverGateWay] setDelegate:self];*/
 }
 
 - (IBAction)favouriteButtonAction:(id)sender
@@ -196,6 +199,14 @@
     SiteContent *news = [self detectNewsFromIndexPath:indexPath];
     [news setIsFavourite:[NSNumber numberWithBool:YES]];
     [news setIsRead:[NSNumber numberWithBool:YES]];
+    
+    for (FavouriteNewsInfo *item in [RRCoreDataSupport fetchData:FavouriteNewsInfoEntityName])
+    {
+        if ([[item newsTitle] isEqualToString:[news newsTitle]])
+        {
+            return;
+        }
+    }
     
     FavouriteNewsInfo *newItem = [NSEntityDescription insertNewObjectForEntityForName:FavouriteNewsInfoEntityName
                                                  inManagedObjectContext:[RRManagedObjectContext sharedManagedObjectContext]];
@@ -215,6 +226,14 @@
     SiteContent *news = [self detectNewsFromIndexPath:indexPath];
     [news setIsSaved:[NSNumber numberWithBool:YES]];
     [news setIsRead:[NSNumber numberWithBool:YES]];
+    
+    for (SavedNews *item in [RRCoreDataSupport fetchData:SavedNewsEntityName])
+    {
+        if ([[item newsTitle] isEqualToString:[news newsTitle]])
+        {
+            return;
+        }
+    }
     
     SavedNews *newItem = [NSEntityDescription insertNewObjectForEntityForName:SavedNewsEntityName
                                                        inManagedObjectContext:[RRManagedObjectContext sharedManagedObjectContext]];
@@ -265,9 +284,16 @@
         [dataSourceItem setSiteName:[item title]];
         [dataSourceItem setSiteURL:[item siteUrl]];
         [dataSourceItem setSiteNews:(NSMutableArray *)[self sortNews:item]];
+        [dataSourceItem setPosition:[item sitePosition]];
+        
+        NSLog(@"Site name - %@\n Site position - %@",[dataSourceItem siteName], [dataSourceItem position]);
         
         [[self dataSource] addObject:dataSourceItem];
     }
+    
+     NSArray *sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"position" ascending:YES]];
+    
+    [self setDataSource:[[[self dataSource] sortedArrayUsingDescriptors:sortDescriptors] mutableCopy]];
 }
 
 - (NSArray *)sortNews:(SiteInfo *)site

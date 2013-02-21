@@ -12,7 +12,7 @@
 
 @property (nonatomic, strong) NSNumber *responceStatusCode;
 @property (nonatomic, strong) NSMutableArray *responseData;
-
+@property (nonatomic, strong) NSString *responseDetails;
 + (RKObjectMapping *)objectMapping;
 
 @end

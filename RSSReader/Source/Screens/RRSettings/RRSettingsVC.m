@@ -53,6 +53,13 @@
 
     [[cell textLabel] setText:[item siteUrl]];
     
+    [item setSitePosition:[NSNumber numberWithInt:[indexPath row]]];
+    
+    NSLog(@"Site name - %@ \n Site position - %@", [item title],[item sitePosition]);
+    
+    
+    [RRCoreDataSupport saveManagedObjectContext];
+
     return cell;
 }
 
@@ -109,6 +116,15 @@
     RRRootResponseObjectMapping *item = [mappingResult firstObject];
     NSLog(@"responceStatusCode = %@",[item responceStatusCode]);
     
+    if ([[item responceStatusCode] intValue] != 200)
+    {
+        [[[UIAlertView alloc] initWithTitle:nil
+                                    message:[item responseDetails]
+                                    delegate:nil
+                           cancelButtonTitle:@"OK"
+                           otherButtonTitles:nil, nil] show];
+    }
+    
     [self fetchData];
     [[self tableView] reloadData];
 }
@@ -132,7 +148,7 @@
     
     if (error)
     {
-        assert(error);
+        assert(!error);
     }
 }
 

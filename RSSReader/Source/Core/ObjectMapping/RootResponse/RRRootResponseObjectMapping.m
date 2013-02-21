@@ -11,6 +11,7 @@
 @implementation RRRootResponseObjectMapping
 @synthesize responceStatusCode;
 @synthesize responseData;
+@synthesize responseDetails;
 
 + (RKObjectMapping *)objectMapping
 {
@@ -18,6 +19,7 @@
     [rootMmapping addAttributeMappingsFromDictionary:
     @{
         @"responseStatus": @"responceStatusCode",
+        @"responseDetails": @"responseDetails"
     }];
     
     [rootMmapping addPropertyMapping:[RKRelationshipMapping relationshipMappingFromKeyPath:@"responseData"

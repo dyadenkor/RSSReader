@@ -13,5 +13,6 @@
 @property (nonatomic, strong) NSString *siteName;
 @property (nonatomic, strong) NSString *siteURL;
 @property (nonatomic, strong) NSMutableArray *siteNews;
+@property (nonatomic, strong) NSNumber *position;
 
 @end

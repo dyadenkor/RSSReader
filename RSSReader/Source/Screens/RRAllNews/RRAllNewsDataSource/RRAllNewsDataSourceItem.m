@@ -12,6 +12,7 @@
 @synthesize siteName;
 @synthesize siteURL;
 @synthesize siteNews;
+@synthesize position;
 
 - (id)init
 {
