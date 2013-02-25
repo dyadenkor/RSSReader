@@ -22,6 +22,11 @@
         <relationship name="siteInfo" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="SiteInfo" inverseName="siteNews" inverseEntity="SiteInfo" syncable="YES"/>
     </entity>
     <entity name="SiteInfo" representedClassName="SiteInfo" syncable="YES">
+        <attribute name="autoRefreshTime" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="isAutoRefresh" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="isShowOnlyUnreadNews" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="maxNumbersOfNews" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="needOffNews" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="sitePosition" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="siteUrl" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
@@ -31,6 +36,6 @@
         <element name="FavouriteNewsInfo" positionX="52" positionY="-216" width="128" height="90"/>
         <element name="SavedNews" positionX="-126" positionY="-216" width="128" height="105"/>
         <element name="SiteContent" positionX="54" positionY="-45" width="128" height="165"/>
-        <element name="SiteInfo" positionX="-126" positionY="-45" width="128" height="105"/>
+        <element name="SiteInfo" positionX="-126" positionY="-45" width="128" height="180"/>
     </elements>
 </model>

@@ -57,7 +57,6 @@
     
     NSLog(@"Site name - %@ \n Site position - %@", [item title],[item sitePosition]);
     
-    
     [RRCoreDataSupport saveManagedObjectContext];
 
     return cell;
@@ -167,7 +166,8 @@
 
 - (void)loadNews:(NSString *)link
 {
-    [[self serverGateWay] sendData:link];
+    [[self serverGateWay] sendData:link
+                         newsCount:0];
     
     [[self serverGateWay] setDelegate:self];
 }

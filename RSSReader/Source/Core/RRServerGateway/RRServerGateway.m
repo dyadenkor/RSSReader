@@ -12,9 +12,13 @@
 @implementation RRServerGateway
 
 - (void)sendData:(NSString *)siteUrl
+       newsCount:(NSInteger)count
 {
+    if (count == 0)
+        count = -1;
+    
     // get data from server
-    NSString *pathToResource = [NSString stringWithFormat:@"/ajax/services/feed/load?v=1.0&q=%@&num=3&output=json", siteUrl];
+    NSString *pathToResource = [NSString stringWithFormat:@"/ajax/services/feed/load?v=1.0&q=%@&num=%i&output=json", siteUrl, count];
     
     [[RKObjectManager sharedManager] getObjectsAtPath:pathToResource
                                            parameters:nil

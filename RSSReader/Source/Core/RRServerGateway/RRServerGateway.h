@@ -16,6 +16,7 @@
 @interface RRServerGateway : NSObject
 @property (nonatomic, weak) id<RRServerGatewayDelegate> delegate;
 
-- (void)sendData:(NSString *)siteUrl;
+- (void)sendData:(NSString *)siteUrl
+       newsCount:(NSInteger)count;
 
 @end

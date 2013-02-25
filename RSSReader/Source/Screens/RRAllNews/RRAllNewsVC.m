@@ -38,11 +38,9 @@
     
     [self initDataSource];
     
-    if ([[self dataSource] count])
-    {
-        [[self tableView] reloadData];
-    }
-    else
+    [[self tableView] reloadData];
+    
+    if (![[self dataSource] count])
     {
         RRAlertViewBlock *alert = [[RRAlertViewBlock alloc] initWithTitle:@"No links in settings"
                                                                   message:@"Please add them in Settings"
@@ -280,15 +278,27 @@
 {
     for (SiteInfo *item in [self sites])
     {
-        RRAllNewsDataSourceItem *dataSourceItem = [[RRAllNewsDataSourceItem alloc] init];
-        [dataSourceItem setSiteName:[item title]];
-        [dataSourceItem setSiteURL:[item siteUrl]];
-        [dataSourceItem setSiteNews:(NSMutableArray *)[self sortNews:item]];
-        [dataSourceItem setPosition:[item sitePosition]];
+        if (![[item needOffNews] boolValue])
+        {
+            RRAllNewsDataSourceItem *dataSourceItem = [[RRAllNewsDataSourceItem alloc] init];
+            [dataSourceItem setSiteName:[item title]];
+            [dataSourceItem setSiteURL:[item siteUrl]];
         
-        NSLog(@"Site name - %@\n Site position - %@",[dataSourceItem siteName], [dataSourceItem position]);
+            if ([[item isShowOnlyUnreadNews] boolValue])
+            {
+                [dataSourceItem setSiteNews:(NSMutableArray *)[self onlyUnreadNews:item]];
+            }
+            else
+            {
+                [dataSourceItem setSiteNews:(NSMutableArray *)[self sortNews:item]];
+            }
         
-        [[self dataSource] addObject:dataSourceItem];
+            [dataSourceItem setPosition:[item sitePosition]];
+            
+           // NSLog(@"Site name - %@\n Site position - %@",[dataSourceItem siteName], [dataSourceItem position]);
+            
+            [[self dataSource] addObject:dataSourceItem];
+        }
     }
     
      NSArray *sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"position" ascending:YES]];
@@ -303,8 +313,33 @@
     NSArray *sortArray = [[NSArray alloc] init];
     sortArray = [[site siteNews] sortedArrayUsingDescriptors:sortDescriptors];
     sortArray = [[sortArray reverseObjectEnumerator] allObjects];
+   
+    NSInteger maxNumbersOfNews = [[site maxNumbersOfNews] integerValue];
+
+    if (maxNumbersOfNews == 0 ||
+        maxNumbersOfNews > [sortArray count])
+    {
+        maxNumbersOfNews = [sortArray count];
+    }
+    
+    sortArray = [sortArray subarrayWithRange:NSMakeRange(0, maxNumbersOfNews)];
     
     return sortArray;
+}
+
+- (NSArray *)onlyUnreadNews:(SiteInfo *)site
+{
+    NSArray *sortArray = [NSArray arrayWithArray:[self sortNews:site]];
+    
+    NSNumber * falseValue = [NSNumber numberWithBool:NO];
+    
+    NSPredicate *predicate =
+    [NSPredicate predicateWithFormat:@"(isRead == %@ || isRead == nil)",falseValue];
+    
+    NSArray *filterArray =
+    [sortArray filteredArrayUsingPredicate:predicate];
+    
+    return filterArray;
 }
 
 @end
