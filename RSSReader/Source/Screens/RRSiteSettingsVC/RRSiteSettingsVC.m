@@ -18,6 +18,8 @@
 @property (weak, nonatomic) IBOutlet UITextField *numberOfNewsTextField;
 @property (weak, nonatomic) IBOutlet UITextField *autorefreshingTimeHRTextField;
 @property (nonatomic) UIButton *returnButton;
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+
 @end
 
 @implementation RRSiteSettingsVC
@@ -75,6 +77,7 @@
     [self setAutorefreshTimeView:nil];
     [self setNumberOfNewsTextField:nil];
     [self setAutorefreshingTimeHRTextField:nil];
+    [self setScrollView:nil];
     [super viewDidUnload];
 }
 
@@ -124,7 +127,7 @@
 
 - (void)keyboardWillShow:(NSNotification *)note
 {
-    NSInteger hight = [[self view] frame].size.height + 88 -25;
+    NSInteger hight = [[self view] frame].size.height + 88 - 28;
     
     [UIView animateWithDuration:0.23
                           delay:0.0
@@ -153,6 +156,18 @@
     return YES;
 }
 
+- (void)textFieldDidBeginEditing:(UITextField *)theTextField
+{
+    
+    BOOL isHightScreen = [[UIScreen mainScreen] bounds].size.height > 567.0f;
+    
+    if ([theTextField isEqual:[self autorefreshingTimeHRTextField]] &&
+        !isHightScreen)
+    {
+        [[self scrollView] setContentOffset:CGPointMake(0, 85) animated:YES];
+    }
+}
+
 - (void)textFieldDidEndEditing:(UITextField *)theTextField
 {
     if ([theTextField isEqual:[self numberOfNewsTextField]])
@@ -161,6 +176,8 @@
     }
     else if ([theTextField isEqual:[self autorefreshingTimeHRTextField]])
     {
+        [[self scrollView] setContentOffset:CGPointMake(0, 0) animated:YES];
+        
         NSNumber *hr = [NSNumber numberWithInteger: [[theTextField text] integerValue]];
        
         if ([[theTextField text] isEqualToString:@""])
