@@ -67,6 +67,20 @@
     [super viewDidUnload];
 }
 
+#pragma mark - Rotation
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    [[self tableView] reloadData];
+    return YES;
+}
+
+- (BOOL)shouldAutorotate
+{
+    [[self tableView] reloadData];
+    return YES;
+}
+
 #pragma mark - UITableview
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView

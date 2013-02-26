@@ -10,6 +10,9 @@
 
 @interface RRWebViewVC ()
 @property (weak, nonatomic) IBOutlet UIButton *backButton;
+@property (nonatomic) UIWebView *webView;
+@property (nonatomic) CGRect frameForPortrait;
+@property (nonatomic) CGRect frameForLandScape;
 
 @end
 
@@ -19,25 +22,26 @@
 {
     [super viewDidLoad];
     
-    CGRect frame = CGRectMake(0, 0, [[self view] frame].size.width, [[self view] frame].size.height);
+    [self setFrameForPortrait:CGRectMake(0, 0, [[self view] frame].size.width, [[self view] frame].size.height)];
+    [self setFrameForLandScape:CGRectMake(0, 0, [[self view] frame].size.height, [[self view] frame].size.width)];
     
-    UIWebView *webView = [[UIWebView alloc]initWithFrame:frame];
+    self.webView = [[UIWebView alloc]initWithFrame:[self frameForPortrait]];
     NSURL *url = [NSURL URLWithString:[self url]];
     NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
     
     if ([self siteData])
     {
-        [webView loadData:[self siteData]
+        [[self webView] loadData:[self siteData]
                  MIMEType:@"text/html"
          textEncodingName:@"UTF-8"
                   baseURL:nil];
     }
     else
     {
-        [webView loadRequest:requestObj];
+        [[self webView] loadRequest:requestObj];
     }
     
-    [[self view] addSubview:webView];
+    [[self view] addSubview:[self webView]];
     
     [[self view] addSubview:[self backButton]];
     
@@ -54,6 +58,45 @@
     [self setBackButton:nil];
     [super viewDidUnload];
 }
+
+#pragma mark - Rotation
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    if (interfaceOrientation == UIInterfaceOrientationLandscapeLeft ||
+        interfaceOrientation == UIInterfaceOrientationLandscapeRight)
+    {
+        [[self webView] setFrame:[self frameForLandScape]];
+    }
+    else
+    {
+        [[self webView] setFrame:[self frameForPortrait]];
+    }
+    
+    return YES;
+}
+
+- (NSUInteger)supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationMaskAll;
+}
+
+- (BOOL)shouldAutorotate
+{
+    if ([[UIDevice currentDevice] orientation] == UIInterfaceOrientationLandscapeLeft ||
+        [[UIDevice currentDevice] orientation] == UIInterfaceOrientationLandscapeRight)
+    {
+        [[self webView] setFrame:[self frameForLandScape]];
+    }
+    else
+    {
+        [[self webView] setFrame:[self frameForPortrait]];
+    }
+    
+    return YES;
+}
+
+#pragma mark - UIButtonActions
 
 - (IBAction)backButtonAction:(id)sender
 {

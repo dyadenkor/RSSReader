@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		7F9EC6CB16B1D42200F6D45C /* libRestKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F9EC6A316B1D30A00F6D45C /* libRestKit.a */; };
 		8401D24716B9604000FC69EB /* refreshButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 8401D24616B9604000FC69EB /* refreshButton.png */; };
+		84026F1416DCACFB00C55EBA /* RRTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84026F1316DCACFB00C55EBA /* RRTabBarController.m */; };
 		8414A18316B02CED00E0041A /* RRAllNewsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8414A18216B02CED00E0041A /* RRAllNewsCell.m */; };
 		8414B85C16A065FF005C3C70 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8414B85B16A065FF005C3C70 /* UIKit.framework */; };
 		8414B85E16A065FF005C3C70 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8414B85D16A065FF005C3C70 /* Foundation.framework */; };
@@ -42,6 +43,7 @@
 		847D906216AED48B0089B055 /* RRManagedObjectContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 847D906116AED48B0089B055 /* RRManagedObjectContext.m */; };
 		84C4B8BB16B2CE6500B4A645 /* RRTableViewCellSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 8417119116B2C7B90015698B /* RRTableViewCellSupport.m */; };
 		84DEADE916CA4D1400EDBCF1 /* RRWebViewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DEADE816CA4D1400EDBCF1 /* RRWebViewVC.m */; };
+		84E2963D16DCEE3E001D2C0B /* RRNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E2963C16DCEE3E001D2C0B /* RRNavigationController.m */; };
 		84E6EB5516D220D5005AA21F /* path3794.png in Resources */ = {isa = PBXBuildFile; fileRef = 84E6EB5416D220D5005AA21F /* path3794.png */; };
 		84F39C8516A5925900B08475 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84F39C8416A5925900B08475 /* SystemConfiguration.framework */; };
 		84F39C8716A5926500B08475 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84F39C8616A5926500B08475 /* CoreData.framework */; };
@@ -92,6 +94,8 @@
 /* Begin PBXFileReference section */
 		7F9EC41516B1D30900F6D45C /* RestKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = RestKit.xcodeproj; sourceTree = "<group>"; };
 		8401D24616B9604000FC69EB /* refreshButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = refreshButton.png; sourceTree = "<group>"; };
+		84026F1216DCACFB00C55EBA /* RRTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRTabBarController.h; sourceTree = "<group>"; };
+		84026F1316DCACFB00C55EBA /* RRTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RRTabBarController.m; sourceTree = "<group>"; };
 		8414A18116B02CED00E0041A /* RRAllNewsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRAllNewsCell.h; sourceTree = "<group>"; };
 		8414A18216B02CED00E0041A /* RRAllNewsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RRAllNewsCell.m; sourceTree = "<group>"; };
 		8414B85716A065FF005C3C70 /* RSSReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RSSReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -150,6 +154,8 @@
 		847D906116AED48B0089B055 /* RRManagedObjectContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RRManagedObjectContext.m; sourceTree = "<group>"; };
 		84DEADE716CA4D1400EDBCF1 /* RRWebViewVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRWebViewVC.h; sourceTree = "<group>"; };
 		84DEADE816CA4D1400EDBCF1 /* RRWebViewVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RRWebViewVC.m; sourceTree = "<group>"; };
+		84E2963B16DCEE3E001D2C0B /* RRNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRNavigationController.h; sourceTree = "<group>"; };
+		84E2963C16DCEE3E001D2C0B /* RRNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RRNavigationController.m; sourceTree = "<group>"; };
 		84E6EB5416D220D5005AA21F /* path3794.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = path3794.png; sourceTree = "<group>"; };
 		84F39C8416A5925900B08475 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		84F39C8616A5926500B08475 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -220,6 +226,15 @@
 				84FA2A5116DB7D240024961F /* SiteInfo.m */,
 			);
 			path = ManagedObjects;
+			sourceTree = "<group>";
+		};
+		84026F1116DCACCF00C55EBA /* RootRRTabBarController */ = {
+			isa = PBXGroup;
+			children = (
+				84026F1216DCACFB00C55EBA /* RRTabBarController.h */,
+				84026F1316DCACFB00C55EBA /* RRTabBarController.m */,
+			);
+			path = RootRRTabBarController;
 			sourceTree = "<group>";
 		};
 		8414A17E16B02CC900E0041A /* UITableView */ = {
@@ -351,6 +366,8 @@
 		841975B316A96BE200DBB9E7 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				84E2963A16DCEE19001D2C0B /* RootRRNavigationController */,
+				84026F1116DCACCF00C55EBA /* RootRRTabBarController */,
 				844D13E816AEA8CD00FAF33C /* CoreData */,
 				841975B416A96BE200DBB9E7 /* ObjectMapping */,
 				841975C416A96BE200DBB9E7 /* RRServerGateway */,
@@ -538,6 +555,15 @@
 			path = RRWebviewVC;
 			sourceTree = "<group>";
 		};
+		84E2963A16DCEE19001D2C0B /* RootRRNavigationController */ = {
+			isa = PBXGroup;
+			children = (
+				84E2963B16DCEE3E001D2C0B /* RRNavigationController.h */,
+				84E2963C16DCEE3E001D2C0B /* RRNavigationController.m */,
+			);
+			path = RootRRNavigationController;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -671,6 +697,8 @@
 				84500D1C16D7AA28000BA85C /* SavedNews.m in Sources */,
 				84500D1F16D7AA28000BA85C /* FavouriteNewsInfo.m in Sources */,
 				84FA2A5216DB7D240024961F /* SiteInfo.m in Sources */,
+				84026F1416DCACFB00C55EBA /* RRTabBarController.m in Sources */,
+				84E2963D16DCEE3E001D2C0B /* RRNavigationController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -727,7 +755,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "\"$(BUILT_PRODUCTS_DIR)/../../Headers\"";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				OTHER_LDFLAGS = (
 					"-all_load",
 					"-ObjC",
@@ -752,7 +780,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "\"$(BUILT_PRODUCTS_DIR)/../../Headers\"";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				OTHER_LDFLAGS = (
 					"-all_load",

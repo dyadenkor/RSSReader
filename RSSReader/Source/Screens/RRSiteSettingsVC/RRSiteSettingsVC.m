@@ -27,7 +27,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+   
     self.dataSource = [[NSArray alloc] init];
     [self initDataSource];
     
@@ -53,19 +53,15 @@
     // returnButton
     self.returnButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [[self returnButton] setFrame:CGRectMake(0, 568, 106, 53)];
+    
+    // UIScrollView
+    [[self scrollView] setScrollEnabled:YES];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (void) viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-    
-    [self hideKeyboard];
 }
 
 - (void)viewDidUnload
@@ -79,6 +75,23 @@
     [self setAutorefreshingTimeHRTextField:nil];
     [self setScrollView:nil];
     [super viewDidUnload];
+}
+
+#pragma mark - Rotation
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    return interfaceOrientation == UIInterfaceOrientationPortrait;
+}
+
+- (NSUInteger)supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationPortrait|UIInterfaceOrientationPortraitUpsideDown;
+}
+
+- (BOOL)shouldAutorotate
+{
+    return YES;
 }
 
 #pragma mark - Private methods
@@ -127,7 +140,7 @@
 
 - (void)keyboardWillShow:(NSNotification *)note
 {
-    NSInteger hight = [[self view] frame].size.height + 88 - 28;
+    NSInteger hight = [[self view] frame].size.height - 33;
     
     [UIView animateWithDuration:0.23
                           delay:0.0
@@ -164,7 +177,7 @@
     if ([theTextField isEqual:[self autorefreshingTimeHRTextField]] &&
         !isHightScreen)
     {
-        [[self scrollView] setContentOffset:CGPointMake(0, 85) animated:YES];
+        [[self scrollView] setContentOffset:CGPointMake(0, 65) animated:YES];
     }
 }
 
@@ -254,6 +267,12 @@ replacementString:(NSString *)string
     [[self numberOfNewsTextField] setText:@"All"];
     [[[self dataSource] lastObject] setMaxNumbersOfNews:[NSNumber numberWithInteger: 0]];
     [RRCoreDataSupport saveManagedObjectContext];
+}
+
+- (IBAction)backButtonAction:(id)sender
+{
+    [self hideKeyboard];
+    [self dismissModalViewControllerAnimated:YES];
 }
 
 @end
