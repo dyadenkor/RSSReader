@@ -36,3 +36,6 @@
 // Screens
 #import "RRWebViewVC.h"
 #import "RRSiteSettingsVC.h"
+
+// AutoRefresh
+#import "RRRefreshNews.h"

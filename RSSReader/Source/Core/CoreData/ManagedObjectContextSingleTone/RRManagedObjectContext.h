@@ -10,4 +10,5 @@
 
 @interface RRManagedObjectContext : NSObject
 + (NSManagedObjectContext *)sharedManagedObjectContext;
++ (NSManagedObjectModel *)managedObjectModel;
 @end

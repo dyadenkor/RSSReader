@@ -2,7 +2,7 @@
 //  SiteInfo.m
 //  RSSReader
 //
-//  Created by admin on 2/25/13.
+//  Created by admin on 2/27/13.
 //  Copyright (c) 2013 Roman Dyadenko. All rights reserved.
 //
 
@@ -12,14 +12,14 @@
 
 @implementation SiteInfo
 
+@dynamic autoRefreshTime;
+@dynamic isAutoRefresh;
 @dynamic isShowOnlyUnreadNews;
+@dynamic maxNumbersOfNews;
 @dynamic needOffNews;
 @dynamic sitePosition;
 @dynamic siteUrl;
 @dynamic title;
-@dynamic isAutoRefresh;
-@dynamic autoRefreshTime;
-@dynamic maxNumbersOfNews;
 @dynamic siteNews;
 
 @end

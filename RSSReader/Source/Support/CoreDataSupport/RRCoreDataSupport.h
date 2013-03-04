@@ -13,6 +13,7 @@ extern NSString *const SiteInfoEntityName;
 extern NSString *const FavouriteNewsInfoEntityName;
 extern NSString *const ServerBaseURL;
 extern NSString *const SavedNewsEntityName;
+
 @interface RRCoreDataSupport : NSObject
 
 + (NSError *)saveManagedObjectContext;

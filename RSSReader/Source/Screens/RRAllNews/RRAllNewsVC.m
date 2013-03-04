@@ -14,6 +14,7 @@
 @property (nonatomic) NSMutableArray *sites;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic) RRServerGateway *serverGateWay;
+@property (nonatomic) RRRefreshNews *refreshNews;
 
 @end
 
@@ -24,21 +25,15 @@
     [super viewDidLoad];
     
     self.dataSource = [[NSMutableArray alloc] init];
-    self.serverGateWay = [[RRServerGateway alloc] init];
     self.sites = [[NSMutableArray alloc] init];
+    self.refreshNews = [[RRRefreshNews alloc] init];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
     
-    [[self sites] setArray:[RRCoreDataSupport fetchData:SiteInfoEntityName]];
-    
-    [[self dataSource] removeAllObjects];
-    
-    [self initDataSource];
-    
-    [[self tableView] reloadData];
+    [self refreshScreen];
     
     if (![[self dataSource] count])
     {
@@ -100,18 +95,23 @@
     RRAllNewsDataSourceItem *item = [[self dataSource] objectAtIndex:[indexPath section]];
     SiteContent *news = [[item siteNews] objectAtIndex:[indexPath row]];
     
-    if ([news isRead])
+    [[cell notReadImageView] setHidden:NO];
+    [[cell notReadButton] setHidden:NO];
+    [[cell favouriteButton] setHidden:NO];
+    [[cell saveButton] setHidden:NO];
+    
+    if ([[news isRead] boolValue])
     {
         [[cell notReadImageView] setHidden:YES];
         [[cell notReadButton] setHidden:YES];
     }
-    
-    if ([news isFavourite])
+
+    if ([[news isFavourite] boolValue])
     {
         [[cell favouriteButton] setHidden:YES];
     }
-    
-    if ([news isSaved])
+
+    if ([[news isSaved] boolValue])
     {
         [[cell saveButton] setHidden:YES];
     }
@@ -172,37 +172,14 @@
     }
 }
 
-#pragma mark - RRServerGatewayDelegate
-
-- (void)didRecieveResponceFailure:(NSError *)error
-{
-    NSLog(@"Error   -----   %@",error);
-}
-
-- (void)didRecieveResponceSucces:(RKMappingResult *)mappingResult
-{
-    [[self sites] setArray:[RRCoreDataSupport fetchData:SiteInfoEntityName]];
-      
-    [[self dataSource] removeAllObjects];
-    [self initDataSource];
-    
-    [[self tableView] reloadData];
-}
-
 #pragma mark - Buttons Actions
 
 - (void)refreshButtonPressed:(id)sender
 {
-   /* NSString *url = [[[self dataSource] objectAtIndex:[sender tag]] siteURL];
+    NSString *url = [[[self dataSource] objectAtIndex:[sender tag]] siteURL];
+    [[self refreshNews] start:url];
     
-    SiteInfo *deleteSite = [[self sites] objectAtIndex:[sender tag]];
-    NSManagedObjectContext *context = [RRManagedObjectContext sharedManagedObjectContext];
-    [context deleteObject:deleteSite];
-    
-    [RRCoreDataSupport saveManagedObjectContext];
-    
-    [[self serverGateWay] sendData:url];
-    [[self serverGateWay] setDelegate:self];*/
+    [self performSelector:@selector(refreshScreen) withObject:nil afterDelay:0.7];
 }
 
 - (IBAction)favouriteButtonAction:(id)sender
@@ -212,6 +189,8 @@
     [news setIsFavourite:[NSNumber numberWithBool:YES]];
     [news setIsRead:[NSNumber numberWithBool:YES]];
     
+    [[self tableView] reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:YES];
+
     for (FavouriteNewsInfo *item in [RRCoreDataSupport fetchData:FavouriteNewsInfoEntityName])
     {
         if ([[item newsTitle] isEqualToString:[news newsTitle]])
@@ -228,8 +207,6 @@
     [newItem setNewslink:[news newsLink]];
     
     [RRCoreDataSupport saveManagedObjectContext];
-    
-    [[self tableView] reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:YES];
 }
 
 - (IBAction)saveButtonAction:(id)sender
@@ -239,6 +216,8 @@
     [news setIsSaved:[NSNumber numberWithBool:YES]];
     [news setIsRead:[NSNumber numberWithBool:YES]];
     
+    [[self tableView] reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:YES];
+
     for (SavedNews *item in [RRCoreDataSupport fetchData:SavedNewsEntityName])
     {
         if ([[item newsTitle] isEqualToString:[news newsTitle]])
@@ -255,8 +234,6 @@
     [newItem setNewsLink:[news newsLink]];
     
     [RRCoreDataSupport saveManagedObjectContext];
-    
-    [[self tableView] reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:YES];
 }
 
 - (IBAction)notReadButtonAction:(id)sender
@@ -271,6 +248,17 @@
 }
 
 #pragma mark - Private methods
+
+- (void)refreshScreen
+{
+    [[self sites] setArray:[RRCoreDataSupport fetchData:SiteInfoEntityName]];
+    
+    [[self dataSource] removeAllObjects];
+    
+    [self initDataSource];
+    
+    [[self tableView] reloadData];
+}
 
 - (NSIndexPath *)detectIndexPathFromButton:(UIButton *)theTouchButton
 {
@@ -309,7 +297,7 @@
         
             [dataSourceItem setPosition:[item sitePosition]];
             
-           // NSLog(@"Site name - %@\n Site position - %@",[dataSourceItem siteName], [dataSourceItem position]);
+            NSLog(@"Site name - %@\n Site position - %@",[dataSourceItem siteName], [dataSourceItem position]);
             
             [[self dataSource] addObject:dataSourceItem];
         }

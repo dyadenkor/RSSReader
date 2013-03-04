@@ -40,15 +40,13 @@
     
     [AFNetworkActivityIndicatorManager sharedManager].enabled = YES;
     
+    [RRManagedObjectContext sharedManagedObjectContext];
+    
     // object manager
     RKObjectManager *objectManager = [RKObjectManager managerWithBaseURL:[NSURL URLWithString:ServerBaseURL]];
     
-    // managed object model
-    
-    NSManagedObjectModel *managedObjectModel = [NSManagedObjectModel mergedModelFromBundles:nil];
-    
     // managed object store
-    RKManagedObjectStore *managedObjectStore = [[RKManagedObjectStore alloc] initWithManagedObjectModel:managedObjectModel];
+    RKManagedObjectStore *managedObjectStore = [[RKManagedObjectStore alloc] initWithManagedObjectModel:[RRManagedObjectContext managedObjectModel]];
     objectManager.managedObjectStore = managedObjectStore;
     
     // object mappings
