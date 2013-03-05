@@ -1,4 +1,4 @@
 RSSReader
 =========
 
-![Alt text](https://github.com/dyadenkor/RSSReader/blob/master/Saved.jpg "All news screen")
+![Alt text](/Saved.jpg "All news screen")
