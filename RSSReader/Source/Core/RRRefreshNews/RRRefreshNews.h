@@ -10,6 +10,6 @@
 
 @interface RRRefreshNews : NSObject <RRServerGatewayDelegate>
 
-- (void)start:(NSString *)theUrl;
+- (BOOL)startIsOK:(NSString *)theUrl;
 
 @end

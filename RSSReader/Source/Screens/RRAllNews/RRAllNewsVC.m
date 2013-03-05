@@ -177,7 +177,7 @@
 - (void)refreshButtonPressed:(id)sender
 {
     NSString *url = [[[self dataSource] objectAtIndex:[sender tag]] siteURL];
-    [[self refreshNews] start:url];
+    [[self refreshNews] startIsOK:url];
     
     [self performSelector:@selector(refreshScreen) withObject:nil afterDelay:0.7];
 }

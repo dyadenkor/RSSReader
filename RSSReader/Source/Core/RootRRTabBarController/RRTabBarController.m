@@ -9,7 +9,7 @@
 #import "RRTabBarController.h"
 
 @interface RRTabBarController ()
-
+@property (nonatomic) RRRefreshNews *refreshNews;
 @end
 
 @implementation RRTabBarController
@@ -32,7 +32,29 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+    self.refreshNews = [[RRRefreshNews alloc] init];
+    
+    NSArray *sites = [[NSArray alloc] initWithArray:[RRCoreDataSupport fetchData:SiteInfoEntityName]];
+    
+    for (SiteInfo *site in sites)
+    {
+        if ([[site isAutoRefresh] boolValue])
+        {
+                [NSTimer scheduledTimerWithTimeInterval:[[site autoRefreshTime] intValue] * 3600
+                                                 target:self
+                                               selector:@selector(startUpdatingNews:)
+                                               userInfo:[site siteUrl]
+                                                repeats:YES];
+        }
+    }
+}
+
+- (void)startUpdatingNews:(id)sender
+{
+    if (![[self refreshNews] startIsOK:(NSString *)[sender userInfo]])
+    {
+        [sender invalidate];
+    }
 }
 
 - (void)didReceiveMemoryWarning

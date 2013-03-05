@@ -19,7 +19,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *autorefreshingTimeHRTextField;
 @property (nonatomic) UIButton *returnButton;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
-
+@property (nonatomic) RRRefreshNews *refreshNews;
 @end
 
 @implementation RRSiteSettingsVC
@@ -27,6 +27,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.refreshNews = [[RRRefreshNews alloc] init];
    
     self.dataSource = [[NSArray alloc] init];
     [self initDataSource];
@@ -74,6 +76,7 @@
     [self setNumberOfNewsTextField:nil];
     [self setAutorefreshingTimeHRTextField:nil];
     [self setScrollView:nil];
+    
     [super viewDidUnload];
 }
 
@@ -138,6 +141,29 @@
     }
 }
 
+- (void)startAutoRefresh
+{
+    [NSTimer scheduledTimerWithTimeInterval:[[[[self dataSource] lastObject] autoRefreshTime] intValue] * 3600
+                                     target:self
+                                   selector:@selector(startUpdatingNews:)
+                                   userInfo:[[[self dataSource] lastObject] siteUrl]
+                                    repeats:YES];
+}
+
+- (void)startUpdatingNews:(id)sender
+{
+    [sender setTimeoutInterval:[[[[self dataSource] lastObject] autoRefreshTime] intValue] * 3600];
+    
+    if (![[self refreshNews] startIsOK:(NSString *)[sender userInfo]] ||
+        ![[[[self dataSource] lastObject] isAutoRefresh] boolValue])
+    {
+        [sender invalidate];
+    }
+}
+
+#pragma mark -
+#pragma mark UIKeyBoard
+
 - (void)keyboardWillShow:(NSNotification *)note
 {
     NSInteger hight = [[self view] frame].size.height - 33;
@@ -171,7 +197,6 @@
 
 - (void)textFieldDidBeginEditing:(UITextField *)theTextField
 {
-    
     BOOL isHightScreen = [[UIScreen mainScreen] bounds].size.height > 567.0f;
     
     if ([theTextField isEqual:[self autorefreshingTimeHRTextField]] &&
@@ -199,6 +224,8 @@
         }
                 
         [[[self dataSource] lastObject] setAutoRefreshTime:hr];
+        
+        [self startAutoRefresh];
     }
     
     [RRCoreDataSupport saveManagedObjectContext];
@@ -258,6 +285,11 @@ replacementString:(NSString *)string
     [[[self dataSource] lastObject] setIsAutoRefresh:[NSNumber numberWithBool:[self autoRefreshSwitch].on]];
     
     [RRCoreDataSupport saveManagedObjectContext];
+    
+    if ([self autoRefreshSwitch].on)
+    {
+        [self startAutoRefresh];
+    }
     
     [[self autorefreshTimeView] setHidden:![self autoRefreshSwitch].on];
 }

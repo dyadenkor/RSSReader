@@ -26,7 +26,7 @@
 
 @implementation RRRefreshNews
 
-- (void)start:(NSString *)theUrl
+- (BOOL)startIsOK:(NSString *)theUrl
 {
     NSPredicate *predicate =
     [NSPredicate predicateWithFormat:@"(siteUrl == %@)",theUrl];
@@ -36,9 +36,16 @@
     self.arrayOfOneSite =
     [[RRCoreDataSupport fetchData:SiteInfoEntityName] filteredArrayUsingPredicate:predicate];
     
+    if (![[self arrayOfOneSite] count])
+    {
+        return NO;
+    }
+    
     [self saveOldSite];
     [self deleteOldSite];
     [self loadNewSite];
+    
+    return YES;
 }
 
 - (void)saveOldSite
