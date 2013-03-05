@@ -307,6 +307,7 @@ replacementString:(NSString *)string
 - (IBAction)backButtonAction:(id)sender
 {
     [self hideKeyboard];
+    [self setReturnButton:nil];
     [self dismissModalViewControllerAnimated:YES];
 }
 
