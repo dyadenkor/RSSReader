@@ -117,10 +117,6 @@
     
     [self setDataSource:[[RRManagedObjectContext sharedManagedObjectContext] executeFetchRequest:request
                                                                                            error:&error]];
-    if (error)
-    {
-        assert(0);
-    }
 }
 
 - (void)initSwitches
