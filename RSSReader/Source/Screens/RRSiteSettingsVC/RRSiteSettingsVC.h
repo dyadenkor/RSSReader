@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface RRSiteSettingsVC : UIViewController <UITextFieldDelegate>
+
 @property (nonatomic) NSNumber *sitePosition;
+
 @end

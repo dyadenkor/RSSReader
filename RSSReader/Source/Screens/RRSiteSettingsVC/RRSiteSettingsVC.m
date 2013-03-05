@@ -8,7 +8,9 @@
 
 #import "RRSiteSettingsVC.h"
 #import "RRAppDelegate.h"
+
 @interface RRSiteSettingsVC ()
+
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (nonatomic) NSArray *dataSource;
 @property (weak, nonatomic) IBOutlet UISwitch *siteLoadNewsSwitch;
@@ -20,6 +22,7 @@
 @property (nonatomic) UIButton *returnButton;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (nonatomic) RRRefreshNews *refreshNews;
+
 @end
 
 @implementation RRSiteSettingsVC
