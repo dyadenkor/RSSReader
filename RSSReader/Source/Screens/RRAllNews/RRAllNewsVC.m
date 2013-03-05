@@ -297,8 +297,6 @@
         
             [dataSourceItem setPosition:[item sitePosition]];
             
-            NSLog(@"Site name - %@\n Site position - %@",[dataSourceItem siteName], [dataSourceItem position]);
-            
             [[self dataSource] addObject:dataSourceItem];
         }
     }
