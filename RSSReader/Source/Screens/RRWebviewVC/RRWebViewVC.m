@@ -24,8 +24,15 @@
     
     [self setFrameForPortrait:CGRectMake(0, 0, [[self view] frame].size.width, [[self view] frame].size.height)];
     [self setFrameForLandScape:CGRectMake(0, 0, [[self view] frame].size.height, [[self view] frame].size.width)];
-    
+   
     self.webView = [[UIWebView alloc]initWithFrame:[self frameForPortrait]];
+    
+    if ([[UIDevice currentDevice] orientation] == UIInterfaceOrientationLandscapeLeft ||
+        [[UIDevice currentDevice] orientation] == UIInterfaceOrientationLandscapeRight)
+    {
+        [[self webView] setFrame:[self frameForLandScape]];
+    }
+
     NSURL *url = [NSURL URLWithString:[self url]];
     NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
     
