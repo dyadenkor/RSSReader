@@ -31,6 +31,8 @@
 {
     [super viewDidLoad];
     
+    [[self autorefreshTimeView] setBackgroundColor:[UIColor clearColor]];
+    
     self.refreshNews = [[RRRefreshNews alloc] init];
    
     self.dataSource = [[NSArray alloc] init];
