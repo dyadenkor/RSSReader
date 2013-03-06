@@ -4,7 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1926"/>
     </dependencies>
     <scenes>
-        <!--Favourite NewsVC-->
+        <!--Favourite NewsVC - Fave-->
         <scene sceneID="lAc-I8-MgT">
             <objects>
                 <viewController id="FjK-nj-4Tl" customClass="RRFavouriteNewsVC" sceneMemberID="viewController">
@@ -88,7 +88,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" systemItem="favorites" id="YXB-IK-y9K"/>
+                    <tabBarItem key="tabBarItem" title="Fave" image="Premium.png" id="YXB-IK-y9K"/>
                     <connections>
                         <outlet property="tableView" destination="gTD-g1-ZpZ" id="Qhv-ig-PyV"/>
                     </connections>
@@ -102,11 +102,11 @@
             <objects>
                 <viewController id="nc1-rv-gIP" customClass="RRSettingsVC" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="f4q-05-jm2">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="P2q-zM-Z9u">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="455"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <prototypes>
@@ -308,9 +308,9 @@
         <scene sceneID="pGN-Rk-oBo">
             <objects>
                 <navigationController definesPresentationContext="YES" id="IGi-dO-TNc" customClass="RRNavigationController" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Settings" id="RCH-Fi-UeF"/>
+                    <tabBarItem key="tabBarItem" title="Settings" image="Setup.png" id="RCH-Fi-UeF"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="blackOpaque" prompted="NO"/>
-                    <nil key="simulatedBottomBarMetrics"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="blackOpaque" id="CfX-iw-xn0">
                         <rect key="frame" x="0.0" y="0.0" width="0.0" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -412,7 +412,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Saved" id="JfR-qc-j4F"/>
+                    <tabBarItem key="tabBarItem" title="Saved" image="Saved2.png" id="JfR-qc-j4F"/>
                     <connections>
                         <outlet property="tableView" destination="Gza-cj-88k" id="ftv-t2-PqR"/>
                     </connections>
@@ -525,7 +525,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="All" id="zYF-8Y-Ypp"/>
+                    <tabBarItem key="tabBarItem" title="All" image="List.png" id="zYF-8Y-Ypp"/>
                     <navigationItem key="navigationItem" id="sjV-ks-dxk"/>
                     <connections>
                         <outlet property="tableView" destination="dt2-8s-uNC" id="MO2-Hx-Eop"/>
@@ -593,14 +593,80 @@
         </scene>
     </scenes>
     <resources>
+        <image name="List.png" width="30" height="30"/>
+        <image name="Premium.png" width="30" height="30"/>
+        <image name="Saved2.png" width="30" height="30"/>
+        <image name="Setup.png" width="30" height="30"/>
         <image name="path3794.png" width="233" height="234"/>
     </resources>
+    <classes>
+        <class className="RRAllNewsCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RRAllNewsCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="description" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="favouriteButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="notReadButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="notReadImageView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="saveButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="title" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="RRAllNewsVC" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RRAllNewsVC.h"/>
+            <relationships>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="RRFavouriteNewsVC" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RRFavouriteNewsVC.h"/>
+            <relationships>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="RRNavigationController" superclassName="UINavigationController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RRNavigationController.h"/>
+        </class>
+        <class className="RRSavedNewsVC" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RRSavedNewsVC.h"/>
+            <relationships>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="RRSettingsVC" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RRSettingsVC.h"/>
+            <relationships>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="RRSiteSettingsVC" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RRSiteSettingsVC.h"/>
+            <relationships>
+                <relationship kind="outlet" name="autoRefreshSwitch" candidateClass="UISwitch"/>
+                <relationship kind="outlet" name="autorefreshTimeView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="autorefreshingTimeHRTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="numberOfNewsTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
+                <relationship kind="outlet" name="siteLoadNewsSwitch" candidateClass="UISwitch"/>
+                <relationship kind="outlet" name="titleLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="unreadNewsSwitch" candidateClass="UISwitch"/>
+            </relationships>
+        </class>
+        <class className="RRTabBarController" superclassName="UITabBarController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RRTabBarController.h"/>
+        </class>
+        <class className="RRWebViewVC" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RRWebViewVC.h"/>
+            <relationships>
+                <relationship kind="outlet" name="backButton" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="hjl-PJ-bg3"/>
+        <segue reference="lLs-w8-7jo"/>
     </inferredMetricsTieBreakers>
 </document>
