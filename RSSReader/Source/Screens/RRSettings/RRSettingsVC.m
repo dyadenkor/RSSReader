@@ -63,11 +63,9 @@
     
     SiteInfo *item = [[self dataSource] objectAtIndex:[indexPath row]];
 
-    [[cell textLabel] setText:[item siteUrl]];
+    [[cell textLabel] setText:[item title]];
     
     [item setSitePosition:[NSNumber numberWithInt:[indexPath row]]];
-    
-    NSLog(@"Site name - %@ \n Site position - %@", [item title],[item sitePosition]);
     
     [RRCoreDataSupport saveManagedObjectContext];
 
